@@ -1,8 +1,16 @@
 package com.example.rent.it.object.item;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Blob;
+@Entity
 
 public abstract class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private Blob foto;
     private String categoria;
@@ -56,20 +64,5 @@ public abstract class Item {
 
     public void setTempoLocacao(int tempoLocacao) {
         this.tempoLocacao = tempoLocacao;
-    }
-
-
-    public abstract double getTotalLocacao();
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "nome='" + nome + '\'' +
-                ", foto=" + foto +
-                ", categoria='" + categoria + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", valorDia=" + valorDia +
-                ", tempoLocacao=" + tempoLocacao +
-                '}';
     }
 }

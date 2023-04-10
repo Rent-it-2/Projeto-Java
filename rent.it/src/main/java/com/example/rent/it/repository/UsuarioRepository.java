@@ -1,4 +1,7 @@
 package com.example.rent.it.repository;
 
-public interface UsuarioRepository {
+import com.example.rent.it.object.usuario.UsuarioGeral;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UsuarioRepository extends JpaRepository<UsuarioGeral, Long> {
 }

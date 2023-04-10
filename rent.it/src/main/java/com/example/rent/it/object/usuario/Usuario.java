@@ -4,13 +4,18 @@ import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.item.ItemAlugavel;
 import com.example.rent.it.object.transacao.Transacao;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 public abstract class Usuario {
-
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String apelido;
     private String email;
@@ -21,16 +26,11 @@ public abstract class Usuario {
     private List<ItemAlugavel> favoritos;
     private List<Transacao> transacoes;
 
-    public Usuario() {
-        this.favoritos = new ArrayList<>();
-        this.transacoes = new ArrayList<>();
-    }
-
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -104,27 +104,5 @@ public abstract class Usuario {
 
     public void setTransacoes(List<Transacao> transacoes) {
         this.transacoes = transacoes;
-    }
-
-    public abstract Transacao alugarItem(ItemAlugavel item);
-
-
-    public abstract List<Item> exibeFavoritos();
-
-    public abstract void addFavorito(ItemAlugavel item);
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "id='" + id + '\'' +
-                ", nome='" + nome + '\'' +
-                ", apelido='" + apelido + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", foto=" + foto +
-                ", telefone='" + telefone + '\'' +
-                ", avaliacao=" + avaliacao +
-                ", favoritos=" + favoritos +
-                ", transacoes=" + transacoes +
-                '}';
     }
 }
