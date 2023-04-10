@@ -28,10 +28,9 @@ public class UsuarioController {
         Usuario user = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
 
         if (user == null) {
-            return ResponseEntity.badRequest().body("Credenciais inválidas");
+            return ResponseEntity.status(401).build();
         }
-
-        return ResponseEntity.ok().body("Login realizado com sucesso");
+        return ResponseEntity.status(200).body(user);
     }
 
     //Retorna um Booleando que diz se o cadastro deu certo ou não juntamente com o codigo
