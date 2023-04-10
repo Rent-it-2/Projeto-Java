@@ -12,8 +12,8 @@ public class Autenticacao {
     @Autowired
     private UsuarioRepository userRepository;
 
-    public Usuario login(String email, String password) {
-        Optional<Usuario> optionalUser = userRepository.findByEmailAndPassword(email, password);
+    public Usuario login(String email, String senha) {
+        Optional<Usuario> optionalUser = userRepository.findByEmailAndPassword(email, senha);
 
         if (optionalUser.isPresent()) {
             return optionalUser.get();
