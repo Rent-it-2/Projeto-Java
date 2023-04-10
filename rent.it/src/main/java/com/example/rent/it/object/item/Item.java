@@ -1,4 +1,4 @@
-package object.item;
+package com.example.rent.it.object.item;
 
 import java.sql.Blob;
 

@@ -1,6 +1,6 @@
-package object.transacao;
+package com.example.rent.it.object.transacao;
 
-import object.item.ItemAlugavel;
+import com.example.rent.it.object.item.ItemAlugavel;
 
 public class Transacao {
 

@@ -1,4 +1,4 @@
-package object.item;
+package com.example.rent.it.object.item;
 
 public class ItemUsuario extends Item {
 
