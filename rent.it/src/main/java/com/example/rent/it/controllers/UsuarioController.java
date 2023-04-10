@@ -21,7 +21,18 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
+    private Autenticacao authService;
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Usuario loginRequest) {
+        Usuario user = authService.login(loginRequest.getEmail(), loginRequest.getSenha());
+
+        if (user == null) {
+            return ResponseEntity.badRequest().body("Credenciais inválidas");
+        }
+
+        return ResponseEntity.ok().body("Login realizado com sucesso");
+    }
 
 
 
