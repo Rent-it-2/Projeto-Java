@@ -4,10 +4,7 @@ import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.item.ItemAlugavel;
 import com.example.rent.it.object.transacao.Transacao;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +15,12 @@ public abstract class Usuario {
     private Long id;
     private String nome;
     private String apelido;
+
+    @Column(unique = true)
     private String email;
     private String senha;
     private Blob foto;
+    @Column(unique = true)
     private String telefone;
     private double avaliacao;
     private List<ItemAlugavel> favoritos;
