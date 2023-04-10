@@ -14,6 +14,7 @@ import com.example.rent.it.object.usuario.Usuario;
 
 import java.util.Optional;
 
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -33,7 +34,7 @@ public class UsuarioController {
         return ResponseEntity.status(200).body(user);
     }
 
-    //Retorna um Booleando que diz se o cadastro deu certo ou não juntamente com o codigo
+    //Retorna um Booleano que diz se o cadastro deu certo ou não juntamente com o codigo
     @PostMapping("/cadastrar")
     public ResponseEntity<Boolean> Cadastrar(@RequestBody UsuarioGeral usuario){
 

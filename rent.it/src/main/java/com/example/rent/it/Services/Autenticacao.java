@@ -13,12 +13,9 @@ public class Autenticacao {
     private UsuarioRepository userRepository;
 
     public Usuario login(String email, String senha) {
-        Optional<Usuario> optionalUser = userRepository.findByEmailAndPassword(email, senha);
+        Optional<Usuario> optionalUser = userRepository.findByEmailAndSenha(email, senha);
 
-        if (optionalUser.isPresent()) {
-            return optionalUser.get();
-        }
+        return optionalUser.orElse(null);
 
-        return null;
     }
 }
