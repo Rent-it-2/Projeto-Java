@@ -1,13 +1,11 @@
 package com.example.rent.it.controllers;
 
 import com.example.rent.it.Services.Autenticacao;
-import com.example.rent.it.Services.UsuarioService;
-import com.example.rent.it.object.usuario.UsuarioGeral;
+import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 import com.example.rent.it.repository.UsuarioRepository;
 import com.example.rent.it.object.usuario.Usuario;
@@ -21,10 +19,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private UsuarioService usuarioService;
-
-
     private Autenticacao authService;
 
     @GetMapping("/{id}")
@@ -32,13 +26,40 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Retorna o usuário com o ID especificado"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado usuário com o ID especificado")
     })
-    public Usuario getUsuarioById(@PathVariable Long id) {
-        return usuarioService.getUsuarioById(id);
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long id) {
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if(usuarioOptional.isPresent()) {
+            return ResponseEntity.ok(usuarioOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @GetMapping("/usuarios")
-    public List<Usuario> getAllUsuarios() {
-        return usuarioService.getAllUsuarios();
+    @GetMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuários listados com sucesso")
+    })
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        return ResponseEntity.ok(usuarios);
+    }
+
+
+    @PostMapping
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Usuário cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Erro ao processar a requisição")
+    })
+    public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
+        try {
+            if(this.usuarioRepository.existsByEmail(usuario.getEmail())){
+                return ResponseEntity.status(400).build();
+            }
+            Usuario novoUsuario = usuarioRepository.save(usuario);
+            return ResponseEntity.status(201).body(novoUsuario);
+        } catch (Exception e) {
+            return ResponseEntity.status(400).build();
+        }
     }
 
     @PutMapping("/{id}")
@@ -47,7 +68,18 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Não foi encontrado usuário com o ID especificado")
     })
     public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        return usuarioService.updateUsuario(id, usuario);
+        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
+        if (usuarioOptional.isPresent()) {
+            Usuario usuarioExistente = usuarioOptional.get();
+            usuarioExistente.setNome(usuario.getNome());
+            usuarioExistente.setApelido(usuario.getApelido());
+            usuarioExistente.setEmail(usuario.getEmail());
+            usuarioExistente.setPassword(usuario.getPassword());
+            usuarioExistente.setTelefone(usuario.getTelefone());
+            usuarioExistente.setAvaliacao(usuario.getAvaliacao());
+            return usuarioRepository.save(usuarioExistente);
+        }
+        return null;
     }
 
     @DeleteMapping("/{id}")
@@ -56,16 +88,21 @@ public class UsuarioController {
             @ApiResponse(responseCode = "404", description = "Não foi encontrado usuário com o ID especificado")
     })
     public void deleteUsuario(@PathVariable Long id) {
-        usuarioService.deleteUsuario(id);
+        usuarioRepository.deleteById(id);
     }
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Usuario loginRequest) {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso"),
+            @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
+    })
+    public ResponseEntity<Usuario> login(@RequestBody Usuario loginRequest) {
         Usuario user = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
 
         if (user == null) {
             return ResponseEntity.status(401).build();
         }
-        return ResponseEntity.status(200).body(user);
+
+        return ResponseEntity.ok(user);
     }
 
     @PostMapping("/cadastrar")
