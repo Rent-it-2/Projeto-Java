@@ -1,13 +1,7 @@
 package com.example.rent.it.object.usuario;
 
-import com.example.rent.it.object.item.Item;
-import com.example.rent.it.object.item.ItemAlugavel;
-import com.example.rent.it.object.transacao.Transacao;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
-import java.sql.Blob;
-import java.util.ArrayList;
-import java.util.List;
 @Entity
 public abstract class Usuario {
     @Id
@@ -18,14 +12,10 @@ public abstract class Usuario {
 
     @Column(unique = true)
     private String email;
-    private String senha;
-    private Blob foto;
+    private String password;
     @Column(unique = true)
     private String telefone;
     private double avaliacao;
-    private List<ItemAlugavel> favoritos;
-    private List<Transacao> transacoes;
-
     public Long getId() {
         return id;
     }
@@ -58,20 +48,12 @@ public abstract class Usuario {
         this.email = email;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getPassword() {
+        return password;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTelefone() {
@@ -89,20 +71,5 @@ public abstract class Usuario {
     public void setAvaliacao(double avaliacao) {
         this.avaliacao = avaliacao;
     }
-
-    public List<ItemAlugavel> getFavoritos() {
-        return favoritos;
-    }
-
-    public void setFavoritos(List<ItemAlugavel> favoritos) {
-        this.favoritos = favoritos;
-    }
-
-    public List<Transacao> getTransacoes() {
-        return transacoes;
-    }
-
-    public void setTransacoes(List<Transacao> transacoes) {
-        this.transacoes = transacoes;
-    }
 }
+
