@@ -1,6 +1,7 @@
 package com.example.rent.it.controllers;
 
-import com.example.rent.it.Services.Autenticacao;
+//import com.example.rent.it.Services.Autenticacao;
+import com.example.rent.it.object.usuario.UsuarioGeral;
 import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -19,7 +20,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    private Autenticacao authService;
+    //private Autenticacao authService;
+
 
     @GetMapping("/{id}")
     @ApiResponses(value = {
@@ -50,12 +52,12 @@ public class UsuarioController {
             @ApiResponse(responseCode = "201", description = "Usuário cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Erro ao processar a requisição")
     })
-    public ResponseEntity<Usuario> addUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<UsuarioGeral> addUsuario(@RequestBody UsuarioGeral usuario) {
         try {
             if(this.usuarioRepository.existsByEmail(usuario.getEmail())){
                 return ResponseEntity.status(400).build();
             }
-            Usuario novoUsuario = usuarioRepository.save(usuario);
+            UsuarioGeral novoUsuario = usuarioRepository.save(usuario);
             return ResponseEntity.status(201).body(novoUsuario);
         } catch (Exception e) {
             return ResponseEntity.status(400).build();
@@ -67,17 +69,10 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado usuário com o ID especificado")
     })
-    public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
-        Optional<Usuario> usuarioOptional = usuarioRepository.findById(id);
-        if (usuarioOptional.isPresent()) {
-            Usuario usuarioExistente = usuarioOptional.get();
-            usuarioExistente.setNome(usuario.getNome());
-            usuarioExistente.setApelido(usuario.getApelido());
-            usuarioExistente.setEmail(usuario.getEmail());
-            usuarioExistente.setPassword(usuario.getPassword());
-            usuarioExistente.setTelefone(usuario.getTelefone());
-            usuarioExistente.setAvaliacao(usuario.getAvaliacao());
-            return usuarioRepository.save(usuarioExistente);
+    public UsuarioGeral updateUsuario(@PathVariable Long id, @RequestBody UsuarioGeral usuario) {
+        if (this.usuarioRepository.existsById(id)) {
+            usuario.setId(id);
+            return this.usuarioRepository.save(usuario);
         }
         return null;
     }
@@ -90,15 +85,15 @@ public class UsuarioController {
     public void deleteUsuario(@PathVariable Long id) {
         usuarioRepository.deleteById(id);
     }
-    @PostMapping("/login")
+    @PostMapping("/login/{email}/{senha}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso"),
             @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     })
-    public ResponseEntity<Usuario> login(@RequestBody Usuario loginRequest) {
-        Usuario user = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
+    public ResponseEntity<?> login(@PathVariable String email, @PathVariable String senha) {
+        Optional<UsuarioGeral> user = this.usuarioRepository.findByEmailAndPassword(email, senha);
 
-        if (user == null) {
+        if (!user.isPresent()) {
             return ResponseEntity.status(401).build();
         }
 
@@ -111,7 +106,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o usuário"),
             @ApiResponse(responseCode = "409", description = "Já existe um usuário cadastrado com esse email")
     })
-    public ResponseEntity<Boolean> cadastrar(@RequestBody Usuario usuario){
+    public ResponseEntity<Boolean> cadastrar(@RequestBody UsuarioGeral usuario){
 
         Boolean isOk = false;
 

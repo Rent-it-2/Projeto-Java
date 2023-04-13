@@ -16,6 +16,7 @@ public abstract class Usuario {
     @Column(unique = true)
     private String telefone;
     private double avaliacao;
+
     public Long getId() {
         return id;
     }

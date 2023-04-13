@@ -1,6 +1,7 @@
 package com.example.rent.it.repository;
 
 import com.example.rent.it.object.usuario.Usuario;
+import com.example.rent.it.object.usuario.UsuarioGeral;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +9,8 @@ import java.util.Optional;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     boolean existsByEmail(String email);
-    Optional<Usuario> findByEmailAndPassword(String email, String password);
+    boolean existsById(Long id);
+
+
+    Optional<UsuarioGeral> findByEmailAndPassword(String email, String password);
 }
