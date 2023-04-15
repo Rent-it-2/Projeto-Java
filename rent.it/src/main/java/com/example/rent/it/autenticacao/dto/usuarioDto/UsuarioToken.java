@@ -1,4 +1,4 @@
-package com.example.rent.it.object.usuario;
+package com.example.rent.it.autenticacao.dto.usuarioDto;
 
 public class UsuarioToken {
 

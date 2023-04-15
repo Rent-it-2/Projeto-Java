@@ -1,4 +1,7 @@
 package com.example.rent.it.api.controllers;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioLogin;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
 import com.example.rent.it.object.usuario.*;
 import com.example.rent.it.service.UsuarioService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -56,7 +59,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "200", description = "Usuário atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado usuário com o ID especificado")
     })
-    public UsuarioGeral updateUsuario(@PathVariable Long id, @RequestBody UsuarioGeral usuario) {
+    public Usuario updateUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
         if (this.usuarioRepository.existsById(id)) {
             usuario.setId(id);
             return this.usuarioRepository.save(usuario);

@@ -1,7 +1,10 @@
 package com.example.rent.it.service;
 
-import com.example.rent.it.GerenciadorTokenJwt;
-import com.example.rent.it.autenticacao.UsuarioDto;
+import com.example.rent.it.Token.GerenciadorTokenJwt;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioLogin;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioMapper;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
 import com.example.rent.it.object.usuario.*;
 import com.example.rent.it.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

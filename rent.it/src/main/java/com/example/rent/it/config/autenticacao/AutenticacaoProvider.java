@@ -1,4 +1,4 @@
-package com.example.rent.it.config;
+package com.example.rent.it.config.autenticacao;
 
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

@@ -1,4 +1,4 @@
-package com.example.rent.it.config;
+package com.example.rent.it.config.api;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
 import io.swagger.v3.oas.annotations.info.Contact;

@@ -1,5 +1,6 @@
-package com.example.rent.it.object.usuario;
+package com.example.rent.it.autenticacao.dto.usuarioDto;
 
+import com.example.rent.it.object.usuario.Usuario;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

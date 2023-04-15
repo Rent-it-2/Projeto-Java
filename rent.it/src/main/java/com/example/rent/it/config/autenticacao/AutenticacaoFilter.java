@@ -1,6 +1,6 @@
-package com.example.rent.it.config;
+package com.example.rent.it.config.autenticacao;
 
-import com.example.rent.it.GerenciadorTokenJwt;
+import com.example.rent.it.Token.GerenciadorTokenJwt;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

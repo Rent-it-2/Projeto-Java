@@ -1,22 +1,14 @@
-package com.example.rent.it.object.item;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+package com.example.rent.it.autenticacao.dto.itemDto;
 
 import java.sql.Blob;
-@Entity
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+public class ItemDto {
     private String nome;
-    private Blob foto;
     private String categoria;
     private String descricao;
     private double valorDia;
     private int tempoLocacao;
+
 
     public String getNome() {
         return nome;
@@ -24,14 +16,6 @@ public class Item {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
     }
 
     public String getCategoria() {

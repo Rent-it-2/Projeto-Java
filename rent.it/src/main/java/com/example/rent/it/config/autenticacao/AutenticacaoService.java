@@ -1,7 +1,7 @@
-package com.example.rent.it.config;
+package com.example.rent.it.config.autenticacao;
 
 import com.example.rent.it.object.usuario.Usuario;
-import com.example.rent.it.object.usuario.UsuarioDetalhes;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioDetalhes;
 import com.example.rent.it.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

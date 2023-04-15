@@ -1,4 +1,4 @@
-package com.example.rent.it.config;
+package com.example.rent.it.config.autenticacao;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

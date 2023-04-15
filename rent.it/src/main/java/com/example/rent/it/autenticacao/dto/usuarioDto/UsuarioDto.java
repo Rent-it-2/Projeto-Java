@@ -1,4 +1,4 @@
-package com.example.rent.it.autenticacao;
+package com.example.rent.it.autenticacao.dto.usuarioDto;
 
 public class UsuarioDto {
 
@@ -6,7 +6,6 @@ public class UsuarioDto {
     private String nome;
     private String apelido;
     private String email;
-    private String password;
     private String telefone;
     private double avaliacao;
     private String token;
@@ -16,7 +15,6 @@ public class UsuarioDto {
         this.nome = nome;
         this.apelido = apelido;
         this.email = email;
-        this.password = password;
         this.token = token;
     }
 
@@ -58,14 +56,6 @@ public class UsuarioDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getTelefone() {

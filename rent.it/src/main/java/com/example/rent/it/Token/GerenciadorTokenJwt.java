@@ -1,4 +1,4 @@
-package com.example.rent.it;
+package com.example.rent.it.Token;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
