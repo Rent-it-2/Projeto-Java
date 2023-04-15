@@ -1,26 +1,32 @@
-package com.example.rent.it.object.usuario;
+package com.example.rent.it.autenticacao;
 
-import jakarta.persistence.*;
+public class UsuarioDto {
 
-import java.sql.Blob;
-
-@Entity
-public class Usuario {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String apelido;
-
-    @Column(unique = true)
     private String email;
     private String password;
-    @Column(unique = true)
     private String telefone;
-
     private double avaliacao;
+    private String token;
 
+    public UsuarioDto(Long id, String nome, String apelido, String email, String token) {
+        this.id = id;
+        this.nome = nome;
+        this.apelido = apelido;
+        this.email = email;
+        this.password = password;
+        this.token = token;
+    }
 
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 
     public Long getId() {
         return id;
@@ -78,4 +84,3 @@ public class Usuario {
         this.avaliacao = avaliacao;
     }
 }
-

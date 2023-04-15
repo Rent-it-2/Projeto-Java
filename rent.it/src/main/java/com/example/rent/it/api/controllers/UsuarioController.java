@@ -1,15 +1,14 @@
-package com.example.rent.it.controllers;
-
-//import com.example.rent.it.Services.Autenticacao;
-import com.example.rent.it.object.usuario.UsuarioGeral;
-import io.swagger.v3.oas.annotations.info.Info;
+package com.example.rent.it.api.controllers;
+import com.example.rent.it.object.usuario.*;
+import com.example.rent.it.service.UsuarioService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 import com.example.rent.it.repository.UsuarioRepository;
-import com.example.rent.it.object.usuario.Usuario;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,9 +17,13 @@ import java.util.Optional;
 public class UsuarioController {
 
     @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @Autowired
     private UsuarioRepository usuarioRepository;
 
-    //private Autenticacao authService;
 
 
     @GetMapping("/{id}")
@@ -47,22 +50,6 @@ public class UsuarioController {
     }
 
 
-    @PostMapping
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Usuário cadastrado com sucesso"),
-            @ApiResponse(responseCode = "400", description = "Erro ao processar a requisição")
-    })
-    public ResponseEntity<UsuarioGeral> addUsuario(@RequestBody UsuarioGeral usuario) {
-        try {
-            if(this.usuarioRepository.existsByEmail(usuario.getEmail())){
-                return ResponseEntity.status(400).build();
-            }
-            UsuarioGeral novoUsuario = usuarioRepository.save(usuario);
-            return ResponseEntity.status(201).body(novoUsuario);
-        } catch (Exception e) {
-            return ResponseEntity.status(400).build();
-        }
-    }
 
     @PutMapping("/{id}")
     @ApiResponses(value = {
@@ -85,19 +72,15 @@ public class UsuarioController {
     public void deleteUsuario(@PathVariable Long id) {
         usuarioRepository.deleteById(id);
     }
-    @PostMapping("/login/{email}/{senha}")
+    @PostMapping("/login")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso"),
             @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
     })
-    public ResponseEntity<?> login(@PathVariable String email, @PathVariable String senha) {
-        Optional<UsuarioGeral> user = this.usuarioRepository.findByEmailAndPassword(email, senha);
+    public ResponseEntity<UsuarioToken> login(@RequestBody UsuarioLogin usuarioLoginDto) {
+        UsuarioToken usuarioTokenDto = this.usuarioService.autenticar(usuarioLoginDto);
 
-        if (!user.isPresent()) {
-            return ResponseEntity.status(401).build();
-        }
-
-        return ResponseEntity.ok(user);
+        return ResponseEntity.status(200).body(usuarioTokenDto);
     }
 
     @PostMapping("/cadastrar")
@@ -106,22 +89,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o usuário"),
             @ApiResponse(responseCode = "409", description = "Já existe um usuário cadastrado com esse email")
     })
-    public ResponseEntity<Boolean> cadastrar(@RequestBody UsuarioGeral usuario){
-
-        Boolean isOk = false;
-
-        try {
-            if(this.usuarioRepository.existsByEmail(usuario.getEmail())){
-                return   ResponseEntity.status(409).body(isOk);
-            }
-
-            this.usuarioRepository.save(usuario);
-
-        }catch (Exception e){
-            return ResponseEntity.status(400).body(isOk);
-        }
-        isOk = true;
-
-        return ResponseEntity.status(201).body(isOk);
+    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto) {
+        this.usuarioService.criar(usuarioCriacaoDto);
+        return ResponseEntity.status(201).build();
     }
+
 }
