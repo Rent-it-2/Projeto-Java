@@ -24,6 +24,28 @@ public class itemController {
     @Autowired
     private ItemService itemService;
 
+
+    @PutMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Item atualizado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Não foi encontrado Item com o ID especificado")
+    })
+    public Item updateItem(@PathVariable Long id, @RequestBody Item item) {
+        if (this.itemRepository.existsById(id)) {
+            item.setId(id);
+            return this.itemRepository.save(item);
+        }
+        return null;
+    }
+    @DeleteMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Item removido com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Não foi encontrado Item com o ID especificado")
+    })
+    public void deleteItem(@PathVariable Long id) {
+        itemRepository.deleteById(id);
+    }
+
     @GetMapping("/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Retorna o item com o ID especificado"),
