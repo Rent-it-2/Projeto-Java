@@ -1,22 +1,34 @@
-package com.example.rent.it.object.item;
+package com.example.rent.it.autenticacao.dto.itemDto;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
+import com.example.rent.it.object.usuario.Usuario;
 
 import java.sql.Blob;
-@Entity
-public class Item {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+public class ItemToken {
     private Long id;
     private String nome;
-    private Blob foto;
     private String categoria;
     private String descricao;
     private double valorDia;
     private int tempoLocacao;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -24,14 +36,6 @@ public class Item {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
     }
 
     public String getCategoria() {
@@ -56,14 +60,6 @@ public class Item {
 
     public void setValorDia(double valorDia) {
         this.valorDia = valorDia;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public int getTempoLocacao() {

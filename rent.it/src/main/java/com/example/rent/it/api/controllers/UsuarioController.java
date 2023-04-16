@@ -6,6 +6,7 @@ import com.example.rent.it.object.usuario.*;
 import com.example.rent.it.service.UsuarioService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -87,6 +88,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
+    @SecurityRequirement(name = "Bearer")
     @ApiResponses(value = {
             @ApiResponse(responseCode ="201", description = "Usuário cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o usuário"),
