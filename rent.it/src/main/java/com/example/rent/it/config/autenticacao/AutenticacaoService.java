@@ -28,6 +28,6 @@ public class AutenticacaoService implements UserDetailsService {
       throw new UsernameNotFoundException(String.format("usuario: %s nao encontrado", username));
     }
 
-    return (UserDetails) new UsuarioDetalhes(usuarioOpt.get());
+    return new UsuarioDetalhes(usuarioOpt.get());
   }
 }

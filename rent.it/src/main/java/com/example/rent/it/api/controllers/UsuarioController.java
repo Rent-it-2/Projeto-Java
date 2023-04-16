@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 import com.example.rent.it.repository.UsuarioRepository;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -88,12 +87,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
-    @SecurityRequirement(name = "Bearer")
     @ApiResponses(value = {
             @ApiResponse(responseCode ="201", description = "Usuário cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o usuário"),
             @ApiResponse(responseCode = "409", description = "Já existe um usuário cadastrado com esse email")
     })
+    @SecurityRequirement(name = "Bearer")
     public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
