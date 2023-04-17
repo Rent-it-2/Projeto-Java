@@ -1,9 +1,7 @@
 package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
 import com.example.rent.it.object.item.Item;
-import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.service.ItemService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -12,8 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/itens")
@@ -60,13 +57,26 @@ public class itemController {
         }
     }
 
+
     @GetMapping
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Itens listados com sucesso")
     })
-    public ResponseEntity<List<Item>> getAllItens() {
-        List<Item> itens = itemRepository.findAll();
-        return ResponseEntity.ok(itens);
+    public List<Map<String, Object>> getAllresumidos() {
+        List<Object[]> itens = itemRepository.findAllItens();
+
+        List<Map<String, Object>> itensResumidos = new ArrayList<>();
+
+        for (Object[] item : itens) {
+            Map<String, Object> itemResumido = new HashMap<>();
+            itemResumido.put("id", item[0]);
+            itemResumido.put("nome", item[1]);
+            itemResumido.put("categoria", item[2]);
+            itemResumido.put("valorDia", item[3]);
+            itensResumidos.add(itemResumido);
+        }
+
+        return itensResumidos;
     }
     @PostMapping("/cadastrar")
     @ApiResponses(value = {

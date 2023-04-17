@@ -1,9 +1,5 @@
 package com.example.rent.it.autenticacao.dto.itemDto;
-
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
 import com.example.rent.it.object.item.Item;
-import com.example.rent.it.object.usuario.Usuario;
 
 public class ItemMapper {
     public static Item of(ItemDto itemDto) {
@@ -16,6 +12,7 @@ public class ItemMapper {
         item.setTempoLocacao(itemDto.getTempoLocacao());
         return item;
     }
+
     public static ItemToken of(Item item, String token) {
         ItemToken itemToken = new ItemToken();
 
