@@ -5,21 +5,22 @@ import jakarta.persistence.*;
 import java.sql.Blob;
 
 @Entity
+@Table(name = "Usuarios")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "apelido")
     private String apelido;
 
-    @Column(unique = true)
+    @Column(unique = true, name = "email")
     private String email;
+    @Column(name = "password")
     private String password;
-    @Column(unique = true)
+    @Column(unique = true, name = "telefone")
     private String telefone;
-
-    private double avaliacao;
-
 
 
     public Long getId() {
@@ -70,12 +71,6 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public double getAvaliacao() {
-        return avaliacao;
-    }
 
-    public void setAvaliacao(double avaliacao) {
-        this.avaliacao = avaliacao;
-    }
 }
 

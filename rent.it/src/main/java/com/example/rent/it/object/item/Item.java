@@ -1,21 +1,25 @@
 package com.example.rent.it.object.item;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.sql.Blob;
 @Entity
+@Table(name = "Itens")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "foto")
     private Blob foto;
+    @Column(name = "categoria")
     private String categoria;
+    @Column(name = "descricao")
     private String descricao;
+    @Column(name = "valorDia")
     private double valorDia;
+    @Column(name = "tempoLocacao")
     private int tempoLocacao;
 
     public String getNome() {
