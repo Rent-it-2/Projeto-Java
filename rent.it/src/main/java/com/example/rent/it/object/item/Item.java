@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.sql.Blob;
 @Entity
-@Table(name = "Itens")
+@Table(name = "itens")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
