@@ -105,6 +105,9 @@ public class ListaAluguel {
       for (int i = 0; i < transacoes.getTamanho(); i++){
 
           for (int j = 0; j < transacoes.getTamanho(); j++){
+              if(transacoes.getElemento(j + 1) == null){
+                  break;
+              }
               if (transacoes.getElemento(j).getFkItem().getValorDia()
                       > transacoes.getElemento(j + 1).getFkItem().getValorDia()) {
                       Transacao aux = transacoes.getElemento(j);
@@ -113,6 +116,7 @@ public class ListaAluguel {
                       transacoes.adicionaNoIndice(aux, j + 1);
 
               }
+
           }
 
       }

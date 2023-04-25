@@ -50,7 +50,8 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/actuator/*"),
             new AntPathRequestMatcher("/usuarios/login/**"),
             new AntPathRequestMatcher("/h2-console/**"),
-            new AntPathRequestMatcher("/transacoes/**")
+            new AntPathRequestMatcher("/transacoes/**"),
+            new AntPathRequestMatcher("/itens/**")
     };
 
     @Bean

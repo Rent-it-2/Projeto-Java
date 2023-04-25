@@ -33,7 +33,7 @@ public class ListaObj <T> {
     }
     //adiciona elemento no indice desejado
     public void adicionaNoIndice(T elemento, int indice) {
-        if (nroElem >= vetor.length || indice > nroElem) {
+        if (indice > nroElem) {
             System.out.println("Lista está cheia");
         }
         else {
