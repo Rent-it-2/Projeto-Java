@@ -8,10 +8,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.Date;
-import java.util.Formatter;
-import java.util.FormatterClosedException;
-import java.util.List;
+import java.util.*;
 
 public class ListaAluguel {
     private Path diretorioBase = Path.of(System.getProperty("java.io.tmpdir") + "/arquivos"); // temporario
@@ -27,10 +24,10 @@ public class ListaAluguel {
             this.diretorioBase.toFile().mkdir();
         }
 
-        if(encontrarMedia){
+        if (encontrarMedia) {
 
             transacoes = ordenarPorValor(transacoes);
-            Transacao t = encontrarMedia(transacoes);
+
         }
 
         try {
@@ -100,31 +97,47 @@ public class ListaAluguel {
 
     }
 
-    public ListaObj<Transacao> ordenarPorValor(ListaObj<Transacao> transacoes){
+    public ListaObj<Transacao> ordenarPorValor(ListaObj<Transacao> transacoes) {
 
-      for (int i = 0; i < transacoes.getTamanho(); i++){
+        for (int i = 0; i < transacoes.getTamanho(); i++) {
 
-          for (int j = 0; j < transacoes.getTamanho(); j++){
-              if(transacoes.getElemento(j + 1) == null){
-                  break;
-              }
-              if (transacoes.getElemento(j).getFkItem().getValorDia()
-                      > transacoes.getElemento(j + 1).getFkItem().getValorDia()) {
-                      Transacao aux = transacoes.getElemento(j);
+            for (int j = 0; j < transacoes.getTamanho(); j++) {
+                if (transacoes.getElemento(j + 1) == null) {
+                    break;
+                }
+                if (transacoes.getElemento(j).getFkItem().getValorDia() > transacoes.getElemento(j + 1).getFkItem().getValorDia()) {
+                    Transacao aux = transacoes.getElemento(j);
 
-                      transacoes.adicionaNoIndice(transacoes.getElemento(j + 1), j);
-                      transacoes.adicionaNoIndice(aux, j + 1);
+                    transacoes.adicionaNoIndice(transacoes.getElemento(j + 1), j);
+                    transacoes.adicionaNoIndice(aux, j + 1);
 
-              }
+                }
 
-          }
+            }
 
-      }
-      return transacoes;
+        }
+        return transacoes;
     }
 
-    public Transacao encontrarMedia(ListaObj<Transacao> transacoes){
-    return null;
+    public Optional<Transacao> encontrarProdutoAlugadoPorPreco(ListaObj<Transacao> transacoes, int preco) {
+        Optional<Transacao> optionalTransacao = Optional.empty();
+        int tam = transacoes.getTamanho();
+        int inf = 0;     // limite inferior (o primeiro índice de vetor em C é zero          )
+        int sup = tam - 1; // limite superior (termina em um número a menos. 0 a 9 são 10 números)
+        int meio;
+        int cont = 0;
+        while (inf <= sup) {
+            meio = (inf + sup) / 2;
+            if (transacoes.getElemento(cont).getFkItem().getValorDia() == preco){
+                return Optional.of(transacoes.getElemento(cont));
+            }
+            if (preco < transacoes.getElemento(meio).getFkItem().getValorDia()) {
+                sup = meio - 1;
+            }else {
+                inf = meio + 1;
+            }
+            cont++;
+        }
+        return optionalTransacao;
     }
-
 }

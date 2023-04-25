@@ -18,6 +18,7 @@ import java.io.InputStream;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/transacoes")
@@ -29,6 +30,10 @@ public class TransacaoController {
 
 
   @GetMapping("/csv/{id}")
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Arquivo enviado com sucesso"),
+          @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+  })
     public ResponseEntity<byte[]> getListaAluguel(@PathVariable Long id){
           try {
               InputStream fileInputStream = new FileInputStream(this.transacaoService.getAlugueis(id));
@@ -45,6 +50,10 @@ public class TransacaoController {
      return null;
   }
     @GetMapping("/csv/ordenado/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Arquivo enviado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+             })
     public ResponseEntity<byte[]> getListaAluguelOrdenado(@PathVariable Long id){
         try {
             InputStream fileInputStream = new FileInputStream(this.transacaoService.getAlugueisOrdenado(id));
@@ -61,8 +70,21 @@ public class TransacaoController {
         return null;
     }
   @GetMapping
+  @ApiResponses(value = {
+          @ApiResponse(responseCode = "200", description = "Arquivo enviado com sucesso"),
+          @ApiResponse(responseCode = "500", description = "Serviço não disponivel")
+  })
     public List<Transacao> getTransacoes(){
       return this.transacaoService.getTransacoes();
   }
+    @GetMapping("/precoalugado/{id}/{preco}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Arquivo enviado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+    })
+    public Optional<Transacao> getTransacaoPorPreco(@PathVariable int preco,
+                                                    @PathVariable Long id){
 
+        return this.transacaoService.getTransacaoPorPreco(preco, id);
+    }
 }
