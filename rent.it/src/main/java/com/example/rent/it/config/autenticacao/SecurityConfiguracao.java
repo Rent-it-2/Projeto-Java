@@ -45,11 +45,12 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/api/public/**"),
             new AntPathRequestMatcher("/api/public/authenticate"),
             new AntPathRequestMatcher("/webjars/**"),
-            new AntPathRequestMatcher("/**"),
+            new AntPathRequestMatcher("/usuarios/**"),
             new AntPathRequestMatcher("/v3/api-docs/**"),
             new AntPathRequestMatcher("/actuator/*"),
             new AntPathRequestMatcher("/usuarios/login/**"),
-            new AntPathRequestMatcher("/h2-console/**")
+            new AntPathRequestMatcher("/h2-console/**"),
+            new AntPathRequestMatcher("/transacoes/**")
     };
 
     @Bean

@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 import com.example.rent.it.repository.UsuarioRepository;
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -93,7 +95,7 @@ public class UsuarioController {
             @ApiResponse(responseCode = "409", description = "Já existe um usuário cadastrado com esse email")
     })
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto) {
+    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto, @RequestBody MultipartFile foto) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }

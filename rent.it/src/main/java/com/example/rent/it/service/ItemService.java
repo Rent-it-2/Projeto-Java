@@ -10,6 +10,8 @@ import com.example.rent.it.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ItemService {
 
@@ -18,5 +20,9 @@ public class ItemService {
     public void criar(ItemDto itemDto) {
         final Item novoItem = ItemMapper.of(itemDto);
         this.itemRepository.save(novoItem);
+    }
+    // Achar todos os itens
+    public List<Item> acharTodos(){
+        return this.itemRepository.findAll();
     }
 }

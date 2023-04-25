@@ -1,5 +1,9 @@
 package com.example.rent.it.ordenacao;
 
+import com.example.rent.it.object.usuario.Usuario;
+
+import java.util.List;
+
 public class ListaObj <T> {
 
     // Atributos
@@ -14,7 +18,7 @@ public class ListaObj <T> {
         nroElem = 0;                         // Zera nroElem
     }
 
-    // Metodos
+   // Metodos
 
     /* Metodo adiciona - recebe o elemento a ser adicionado na lista
        Se a lista estiver cheia, exibe uma mensagem

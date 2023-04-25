@@ -17,9 +17,9 @@ public class Item {
     private String categoria;
     @Column(name = "descricao")
     private String descricao;
-    @Column(name = "valorDia")
+    @Column(name = "valor_dia")
     private double valorDia;
-    @Column(name = "tempoLocacao")
+    @Column(name = "tempo_locacao")
     private int tempoLocacao;
 
     public String getNome() {

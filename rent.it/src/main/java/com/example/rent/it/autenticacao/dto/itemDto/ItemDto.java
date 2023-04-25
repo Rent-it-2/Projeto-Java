@@ -3,12 +3,31 @@ package com.example.rent.it.autenticacao.dto.itemDto;
 import java.sql.Blob;
 
 public class ItemDto {
+    private Long id;
+
+
     private String nome;
     private String categoria;
     private String descricao;
     private double valorDia;
-    private int tempoLocacao;
 
+    private boolean isFavorito;
+
+    public boolean isFavorito() {
+        return isFavorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        isFavorito = favorito;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNome() {
         return nome;
@@ -42,11 +61,5 @@ public class ItemDto {
         this.valorDia = valorDia;
     }
 
-    public int getTempoLocacao() {
-        return tempoLocacao;
-    }
 
-    public void setTempoLocacao(int tempoLocacao) {
-        this.tempoLocacao = tempoLocacao;
-    }
 }

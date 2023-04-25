@@ -59,4 +59,7 @@ public class UsuarioService {
 
         return UsuarioMapper.of(usuarioAutenticado, token);
     }
+
+
+
 }

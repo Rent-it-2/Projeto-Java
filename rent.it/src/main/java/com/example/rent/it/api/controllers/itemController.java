@@ -1,6 +1,7 @@
 package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
+import com.example.rent.it.autenticacao.dto.itemDto.ItemMapper;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.service.ItemService;
@@ -62,21 +63,9 @@ public class itemController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Itens listados com sucesso")
     })
-    public List<Map<String, Object>> getAllresumidos() {
-        List<Object[]> itens = itemRepository.findAllItens();
+    public List<ItemDto> getAllresumidos() {
 
-        List<Map<String, Object>> itensResumidos = new ArrayList<>();
-
-        for (Object[] item : itens) {
-            Map<String, Object> itemResumido = new HashMap<>();
-            itemResumido.put("id", item[0]);
-            itemResumido.put("nome", item[1]);
-            itemResumido.put("categoria", item[2]);
-            itemResumido.put("valorDia", item[3]);
-            itensResumidos.add(itemResumido);
-        }
-
-        return itensResumidos;
+        return ItemMapper.of(this.itemService.acharTodos());
     }
     @PostMapping("/cadastrar")
     @ApiResponses(value = {
