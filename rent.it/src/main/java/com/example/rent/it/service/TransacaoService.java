@@ -34,9 +34,27 @@ public class TransacaoService {
 
              }
 
-             return listaAluguel.getListaDeAlugueis(list);
+             return listaAluguel.getListaDeAlugueis(list, false);
          }
          return null;
+    }
+
+    public File getAlugueisOrdenado(Long id){
+
+        Optional<Usuario> usu = this.usuarioRepository.findById(id);
+        if(!usu.isEmpty()) {
+            int count = (this.transacaoRepository.countByFkUsuario(usu.get())).intValue();
+            List<Transacao> transacoes = this.transacaoRepository.findAllByFkUsuario(usu.get());
+            ListaObj<Transacao> list = new ListaObj<>(count);
+
+            for (int i = 0; i < count; i++) {
+                list.adiciona(transacoes.get(i));
+
+            }
+
+            return listaAluguel.getListaDeAlugueis(list, true);
+        }
+        return null;
     }
 
     public List<Transacao> getTransacoes() {

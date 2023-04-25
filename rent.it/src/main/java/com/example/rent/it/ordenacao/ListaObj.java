@@ -31,6 +31,15 @@ public class ListaObj <T> {
             vetor[nroElem++] = elemento;
         }
     }
+    //adiciona elemento no indice desejado
+    public void adicionaNoIndice(T elemento, int indice) {
+        if (nroElem >= vetor.length || indice > nroElem) {
+            System.out.println("Lista está cheia");
+        }
+        else {
+            vetor[indice] = elemento;
+        }
+    }
 
     /* Metodo exibe - exibe os elementos da lista */
     public void exibe() {
@@ -105,4 +114,6 @@ public class ListaObj <T> {
     public void limpa() {
         nroElem = 0;
     }
+
+
 }

@@ -28,7 +28,7 @@ public class TransacaoController {
 
 
 
-  @GetMapping("/download/{id}")
+  @GetMapping("/csv/{id}")
     public ResponseEntity<byte[]> getListaAluguel(@PathVariable Long id){
           try {
               InputStream fileInputStream = new FileInputStream(this.transacaoService.getAlugueis(id));
@@ -44,7 +44,22 @@ public class TransacaoController {
 
      return null;
   }
+    @GetMapping("/csv/ordenado/{id}")
+    public ResponseEntity<byte[]> getListaAluguelOrdenado(@PathVariable Long id){
+        try {
+            InputStream fileInputStream = new FileInputStream(this.transacaoService.getAlugueisOrdenado(id));
+            return ResponseEntity.status(200)
+                    .header("Content-Disposition",
+                            "attachment; filename=" + LocalDate.now() + ".csv")
+                    .body(fileInputStream.readAllBytes());
 
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
   @GetMapping
     public List<Transacao> getTransacoes(){
       return this.transacaoService.getTransacoes();
