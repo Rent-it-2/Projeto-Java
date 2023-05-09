@@ -5,29 +5,21 @@ import jakarta.persistence.*;
 import java.sql.Blob;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUsuario", unique = true)
     private Long id;
     @Column(name = "nome")
     private String nome;
     @Column(name = "apelido")
     private String apelido;
-    @Column(name = "foto")
-    private Blob foto;
+
     @Column(unique = true, name = "email")
     private String email;
     @Column(name = "password")
     private String password;
-
-    public Blob getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Blob foto) {
-        this.foto = foto;
-    }
 
     @Column(unique = true, name = "telefone")
     private String telefone;

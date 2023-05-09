@@ -95,7 +95,9 @@ public class UsuarioController {
             @ApiResponse(responseCode = "409", description = "Já existe um usuário cadastrado com esse email")
     })
     @SecurityRequirement(name = "Bearer")
-    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto, @RequestBody MultipartFile foto) {
+    public ResponseEntity<Void> criar(@RequestBody UsuarioCriacao usuarioCriacaoDto
+                                     // ,@RequestBody MultipartFile foto
+    ) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
     }

@@ -128,12 +128,12 @@ public class ListaAluguel {
         int cont = 0;
         while (inf <= sup) {
             meio = (inf + sup) / 2;
-            if (transacoes.getElemento(cont).getFkItem().getValorDia() == preco){
+            if (transacoes.getElemento(cont).getFkItem().getValorDia() == preco) {
                 return Optional.of(transacoes.getElemento(cont));
             }
             if (preco < transacoes.getElemento(meio).getFkItem().getValorDia()) {
                 sup = meio - 1;
-            }else {
+            } else {
                 inf = meio + 1;
             }
             cont++;
