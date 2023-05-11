@@ -76,5 +76,17 @@ public class itemController {
         this.itemService.criar(itemDto);
         return ResponseEntity.status(201).build();
     }
-
+    @GetMapping("/nome/{nome}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "Itens encontrados"),
+            @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
+    })
+    public ResponseEntity<List<Item>> getItemByNome(@PathVariable String nome){
+        Optional<List<Item>> itemOptional = itemRepository.findByNomeIgnoreCase(nome);
+        if(itemOptional.isPresent()) {
+            return ResponseEntity.ok(itemOptional.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

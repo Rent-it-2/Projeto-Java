@@ -11,9 +11,9 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario", unique = true)
     private Long id;
-    @Column(name = "nome")
+    @Column(name = "nomeUso")
     private String nome;
-    @Column(name = "apelido")
+    @Column(name = "apelidoUso")
     private String apelido;
 
     @Column(unique = true, name = "email")

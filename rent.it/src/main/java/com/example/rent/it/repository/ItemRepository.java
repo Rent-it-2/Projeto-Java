@@ -15,4 +15,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     boolean existsById(Long id);
     Optional<Item> findById(Long id);
 
+    Optional<List<Item>> findByNomeIgnoreCase(String nome);
 }
