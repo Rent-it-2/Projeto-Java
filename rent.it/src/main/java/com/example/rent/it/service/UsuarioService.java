@@ -61,5 +61,26 @@ public class UsuarioService {
     }
 
 
+    public byte[] buscarFoto(Long id) {
+
+        if(!this.usuarioRepository.existsFotoById(id)){
+            return this.usuarioRepository.findFotoById(id - id);
+        }
+
+        return this.usuarioRepository.findFotoById(id);
+    }
+
+    public boolean atualizaFoto(Long id, byte[] foto) {
+
+        if(this.usuarioRepository.existsById(id)){
+
+            this.usuarioRepository.atualizaFoto(id,foto);
+            return true;
+        }
+
+        return false;
+    }
+
+
 
 }

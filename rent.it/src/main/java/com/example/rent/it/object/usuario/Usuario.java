@@ -1,5 +1,6 @@
 package com.example.rent.it.object.usuario;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.sql.Blob;
@@ -11,7 +12,7 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idUsuario", unique = true)
     private Long id;
-    @Column(name = "nomeUso")
+    @Column(name = "nomeUsu")
     private String nome;
     @Column(name = "apelidoUso")
     private String apelido;
@@ -23,7 +24,17 @@ public class Usuario {
 
     @Column(unique = true, name = "telefone")
     private String telefone;
+    @JsonIgnore
+    @Column(name = "ftPerfil")
+    private byte[] foto;
 
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
+    }
 
     public Long getId() {
         return id;

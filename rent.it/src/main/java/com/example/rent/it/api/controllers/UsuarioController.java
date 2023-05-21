@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
@@ -100,6 +101,38 @@ public class UsuarioController {
     ) {
         this.usuarioService.criar(usuarioCriacaoDto);
         return ResponseEntity.status(201).build();
+    }
+
+
+    @GetMapping(value = "/foto/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "Itens encontrados"),
+            @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
+    })
+    public ResponseEntity<byte[]> getFotoItem(@PathVariable Long id){
+
+        return ResponseEntity.status(200).header("content-disposition",
+                        "attachment; filename=\"item.jpg\"")
+                .body(this.usuarioService.buscarFoto(id));
+
+    }
+
+    @CrossOrigin("*")
+    @PatchMapping(value = "/foto/{id}", consumes = "image/*")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "Foto do Item Atualizada"),
+            @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
+    })
+    public ResponseEntity<ResponseEntity> atualizaFotoItem(@PathVariable Long id,
+                                                           @RequestBody byte[] foto){
+        boolean resposta = this.usuarioService.atualizaFoto(id, foto);
+
+        if(!resposta){
+            return ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok().build();
+
     }
 
 }

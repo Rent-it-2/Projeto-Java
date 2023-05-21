@@ -7,19 +7,11 @@ public class ItemDto {
 
 
     private String nome;
-    private String categoria;
+
     private String descricao;
     private double valorDia;
 
-    private boolean isFavorito;
 
-    public boolean isFavorito() {
-        return isFavorito;
-    }
-
-    public void setFavorito(boolean favorito) {
-        isFavorito = favorito;
-    }
 
     public Long getId() {
         return id;
@@ -37,13 +29,7 @@ public class ItemDto {
         this.nome = nome;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
 
     public String getDescricao() {
         return descricao;

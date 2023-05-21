@@ -25,4 +25,24 @@ public class ItemService {
     public List<Item> acharTodos(){
         return this.itemRepository.findAll();
     }
+
+    public byte[] buscarFoto(Long id) {
+
+        if(!this.itemRepository.existsFotoById(id)){
+            return this.itemRepository.findFotoById(id - id);
+        }
+
+        return this.itemRepository.findFotoById(id);
+    }
+
+    public boolean atualizaFoto(Long id, byte[] foto) {
+
+        if(this.itemRepository.existsById(id)){
+
+            this.itemRepository.atualizaFoto(id,foto);
+            return true;
+        }
+
+        return false;
+    }
 }
