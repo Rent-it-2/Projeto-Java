@@ -1,5 +1,6 @@
 package com.example.rent.it.repository;
 
+import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.ordenacao.ListaObj;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,4 +28,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Transactional
     @Query("UPDATE Item i SET i.foto = ?2 WHERE i.id = ?1")
     void atualizaFoto(Long id, byte[] foto);
+
+    List<Item> findByUsuarioId(Long id);
 }

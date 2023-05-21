@@ -5,7 +5,6 @@ import java.sql.Blob;
 public class ItemDto {
     private Long id;
 
-
     private String nome;
 
     private String descricao;

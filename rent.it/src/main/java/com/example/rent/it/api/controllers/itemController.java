@@ -121,4 +121,17 @@ public class itemController {
         return ResponseEntity.ok().build();
 
     }
+
+    @GetMapping("/usuario")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "Itens encontrados"),
+            @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
+    })
+    public ResponseEntity<List<ItemDto>> getItensByUsuario(@RequestParam Long id){
+
+        return ResponseEntity.status(200)
+                .body(this.itemService.buscarPorUsuario(id));
+
+    }
+
 }

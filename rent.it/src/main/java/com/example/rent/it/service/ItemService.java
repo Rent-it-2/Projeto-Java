@@ -45,4 +45,9 @@ public class ItemService {
 
         return false;
     }
+
+    public List<ItemDto> buscarPorUsuario(Long id) {
+
+        return ItemMapper.of(this.itemRepository.findByUsuarioId(id));
+    }
 }
