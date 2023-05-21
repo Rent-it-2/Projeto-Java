@@ -19,4 +19,27 @@ public class Favoritos {
     @JoinColumn(name = "fkItem")
     private Item fkItem;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Item getFkItem() {
+        return fkItem;
+    }
+
+    public void setFkItem(Item fkItem) {
+        this.fkItem = fkItem;
+    }
 }

@@ -1,16 +1,14 @@
 package com.example.rent.it.service;
 
-import com.example.rent.it.autenticacao.dto.itemDto.ItemCriacaoDto;
-import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
-import com.example.rent.it.autenticacao.dto.itemDto.ItemMapper;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioMapper;
+import com.example.rent.it.autenticacao.dto.favotirosDto.FavoritosMapper;
+import com.example.rent.it.autenticacao.dto.favotirosDto.ItemFavoritarDto;
+import com.example.rent.it.autenticacao.dto.itemDto.*;
+import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
-import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.CategoriaRepository;
+import com.example.rent.it.repository.FavoritoRepository;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,12 +20,14 @@ public class ItemService {
     private ItemRepository itemRepository;
     private CategoriaRepository categoriaRepository;
     private UsuarioRepository usuarioRepository;
+    private FavoritoRepository favoritoRepository;
 
     public ItemService(ItemRepository itemRepository, CategoriaRepository categoriaRepository,
-                       UsuarioRepository usuarioRepository) {
+                       UsuarioRepository usuarioRepository, FavoritoRepository favoritos) {
         this.itemRepository = itemRepository;
         this.categoriaRepository = categoriaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.favoritoRepository = favoritos;
     }
 
     public void criar(ItemCriacaoDto itemDto) {
@@ -64,5 +64,11 @@ public class ItemService {
     public List<ItemDto> buscarPorUsuario(Long id) {
 
         return ItemMapper.of(this.itemRepository.findByUsuarioId(id));
+    }
+
+    public Favoritos favoritar(ItemFavoritarDto itemFavoritarDto) {
+        return this.favoritoRepository.save(FavoritosMapper.of(
+                this.usuarioRepository.findById(itemFavoritarDto.getUsuario()).get(),
+                this.itemRepository.findById(itemFavoritarDto.getItem()).get()));
     }
 }

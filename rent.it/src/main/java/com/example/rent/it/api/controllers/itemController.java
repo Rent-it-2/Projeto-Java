@@ -2,6 +2,7 @@ package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.autenticacao.dto.itemDto.ItemCriacaoDto;
 import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
+import com.example.rent.it.autenticacao.dto.favotirosDto.ItemFavoritarDto;
 import com.example.rent.it.autenticacao.dto.itemDto.ItemMapper;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.ItemRepository;
@@ -133,6 +134,16 @@ public class itemController {
         return ResponseEntity.status(200)
                 .body(this.itemService.buscarPorUsuario(id));
 
+    }
+
+    @PostMapping("/favoritar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Item cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o item")
+    })
+    public ResponseEntity<Void> cadastrar(@RequestBody ItemFavoritarDto itemCriacaoDto) {
+        this.itemService.favoritar(itemCriacaoDto);
+        return ResponseEntity.status(201).build();
     }
 
 }
