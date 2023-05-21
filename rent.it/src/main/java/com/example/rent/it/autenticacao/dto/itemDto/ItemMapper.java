@@ -1,5 +1,6 @@
 package com.example.rent.it.autenticacao.dto.itemDto;
 import com.example.rent.it.object.categoria.Categoria;
+import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.CategoriaRepository;
@@ -62,4 +63,5 @@ public class ItemMapper {
         }
        return itensDto;
     }
-}
+
+    }

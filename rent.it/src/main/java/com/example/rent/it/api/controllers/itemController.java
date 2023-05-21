@@ -146,4 +146,14 @@ public class itemController {
         return ResponseEntity.status(201).build();
     }
 
+    @GetMapping("/favoritos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Item cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o item")
+    })
+    public ResponseEntity<List<ItemDto>> findByFavoritos(@RequestParam Long id) {
+
+        return ResponseEntity.status(201).body(this.itemService.acharFavoritos(id));
+    }
+
 }

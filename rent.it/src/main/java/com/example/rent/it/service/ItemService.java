@@ -71,4 +71,9 @@ public class ItemService {
                 this.usuarioRepository.findById(itemFavoritarDto.getUsuario()).get(),
                 this.itemRepository.findById(itemFavoritarDto.getItem()).get()));
     }
+
+    public List<ItemDto> acharFavoritos(Long id) {
+
+        return FavoritosMapper.of(this.favoritoRepository.findByUsuarioId(id));
+    }
 }
