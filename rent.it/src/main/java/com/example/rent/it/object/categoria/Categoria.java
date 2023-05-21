@@ -10,6 +10,8 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCategoria")
     private Integer id;
+    @Column(name = "nomeCategoria")
+    private String nomeCategoria;
 
     public Integer getId() {
         return id;
@@ -27,6 +29,5 @@ public class Categoria {
         this.nomeCategoria = nomeCategoria;
     }
 
-    @Column(name = "nomeCategoria")
-    private String nomeCategoria;
+
 }
