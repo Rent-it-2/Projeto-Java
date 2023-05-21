@@ -1,27 +1,22 @@
 package com.example.rent.it.autenticacao.dto.itemDto;
 
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
-import com.example.rent.it.object.categoria.Categoria;
-import com.example.rent.it.object.usuario.Usuario;
-
-import java.sql.Blob;
-import java.util.List;
-
-public class ItemToken {
+public class ItemCriacaoDto {
     private Long id;
+
     private String nome;
-    private Categoria categoria;
+
+    private Integer categoria;
+
+    private Long usuario;
     private String descricao;
     private double valorDia;
-    private int tempoLocacao;
-    private String token;
 
-    public String getToken() {
-        return token;
+    public Long getUsuario() {
+        return usuario;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
     }
 
     public Long getId() {
@@ -40,11 +35,12 @@ public class ItemToken {
         this.nome = nome;
     }
 
-    public Categoria getCategoria() {
+
+    public Integer getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(Integer categoria) {
         this.categoria = categoria;
     }
 
@@ -64,11 +60,5 @@ public class ItemToken {
         this.valorDia = valorDia;
     }
 
-    public int getTempoLocacao() {
-        return tempoLocacao;
-    }
 
-    public void setTempoLocacao(int tempoLocacao) {
-        this.tempoLocacao = tempoLocacao;
-    }
 }

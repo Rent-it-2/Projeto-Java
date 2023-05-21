@@ -1,5 +1,6 @@
 package com.example.rent.it.api.controllers;
 
+import com.example.rent.it.autenticacao.dto.itemDto.ItemCriacaoDto;
 import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
 import com.example.rent.it.autenticacao.dto.itemDto.ItemMapper;
 import com.example.rent.it.object.item.Item;
@@ -73,8 +74,8 @@ public class itemController {
             @ApiResponse(responseCode ="201", description = "Item cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o item")
     })
-    public ResponseEntity<Void> cadastrar(@RequestBody ItemDto itemDto) {
-        this.itemService.criar(itemDto);
+    public ResponseEntity<Void> cadastrar(@RequestBody ItemCriacaoDto itemCriacaoDto) {
+        this.itemService.criar(itemCriacaoDto);
         return ResponseEntity.status(201).build();
     }
     @GetMapping("/nome/{nome}")

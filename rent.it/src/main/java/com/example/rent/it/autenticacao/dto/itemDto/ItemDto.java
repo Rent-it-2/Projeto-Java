@@ -1,5 +1,7 @@
 package com.example.rent.it.autenticacao.dto.itemDto;
 
+import com.example.rent.it.object.categoria.Categoria;
+
 import java.sql.Blob;
 
 public class ItemDto {
@@ -7,6 +9,7 @@ public class ItemDto {
 
     private String nome;
 
+    private Categoria categoria;
     private String descricao;
     private double valorDia;
 
@@ -29,6 +32,13 @@ public class ItemDto {
     }
 
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 
     public String getDescricao() {
         return descricao;

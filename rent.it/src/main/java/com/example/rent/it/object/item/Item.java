@@ -31,9 +31,9 @@ public class Item {
     private int  disponivel;
     @Column(name = "dtCadastro")
     private Date dtCadastro;
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "fkCategoria")
-    private List<Categoria> categoria;
+    private Categoria categoria;
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
     private Usuario usuario;
@@ -78,11 +78,11 @@ public class Item {
         this.dtCadastro = dtCadastro;
     }
 
-    public List<Categoria> getCategoria() {
+    public Categoria getCategoria() {
         return this.categoria;
     }
 
-    public void setCategoria(List<Categoria> categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 

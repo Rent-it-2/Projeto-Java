@@ -1,5 +1,8 @@
 package com.example.rent.it.autenticacao.dto.itemDto;
+import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
+import com.example.rent.it.object.usuario.Usuario;
+import com.example.rent.it.repository.CategoriaRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,16 +10,29 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemMapper {
+
+
     public static Item of(ItemDto itemDto) {
         Item item = new Item();
-
-//        item.setCategoria(itemDto.getCategoria());
         item.setNome(itemDto.getNome());
         item.setDescricao(itemDto.getDescricao());
         item.setValorDia(itemDto.getValorDia());
-      //  item.setTempoLocacao(itemDto.getTempoLocacao());
+
         return item;
     }
+    public static Item of(ItemCriacaoDto itemDto, Categoria categoria,
+                          Usuario usuario) {
+        Item item = new Item();
+        item.setNome(itemDto.getNome());
+        item.setDescricao(itemDto.getDescricao());
+        item.setValorDia(itemDto.getValorDia());
+        item.setCategoria(categoria);
+        item.setUsuario(usuario);
+
+        return item;
+    }
+
+
 
     public static ItemToken of(Item item, String token) {
         ItemToken itemToken = new ItemToken();
@@ -35,11 +51,11 @@ public class ItemMapper {
         List<ItemDto> itensDto = new ArrayList<>();
         ItemDto itemDto;
 
-        for (int i = 0; i < itens.size() - 1;i++ ) {
+        for (int i = 0; i < itens.size();i++ ) {
            itemDto  = new ItemDto();
            itemDto.setId(itens.get(i).getId());
            itemDto.setNome(itens.get(i).getNome());
-          // itemDto.setCategoria(itens.get(i).getCategoria());
+           itemDto.setCategoria(itens.get(i).getCategoria());
            itemDto.setValorDia(itens.get(i).getValorDia());
            itensDto.add(itemDto);
 

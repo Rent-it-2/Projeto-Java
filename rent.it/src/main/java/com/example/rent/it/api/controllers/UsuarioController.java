@@ -112,7 +112,7 @@ public class UsuarioController {
     public ResponseEntity<byte[]> getFotoItem(@PathVariable Long id){
 
         return ResponseEntity.status(200).header("content-disposition",
-                        "attachment; filename=\"item.jpg\"")
+                        " filename=\"usuario.jpg\"")
                 .body(this.usuarioService.buscarFoto(id));
 
     }
