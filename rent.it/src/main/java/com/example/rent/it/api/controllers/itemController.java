@@ -99,7 +99,7 @@ public class itemController {
     public ResponseEntity<byte[]> getFotoItem(@PathVariable Long id){
 
         return ResponseEntity.status(200).header("content-disposition",
-                "attachment; filename=\"item.jpg\"")
+                " filename=\"item.jpg\"")
                    .body(this.itemService.buscarFoto(id));
 
     }
