@@ -9,7 +9,7 @@ public class ItemDto {
 
     private String nome;
 
-    private Categoria categoria;
+    private String categoria;
     private String descricao;
     private double valorDia;
 
@@ -32,11 +32,11 @@ public class ItemDto {
     }
 
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
