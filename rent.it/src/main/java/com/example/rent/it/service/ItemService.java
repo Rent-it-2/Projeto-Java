@@ -33,10 +33,14 @@ public class ItemService {
     }
 
     public void criar(ItemCriacaoDto itemDto) {
-        final Item novoItem = ItemMapper.of(itemDto,
+
+        if(this.categoriaRepository.existsById(itemDto.getCategoria()) &&
+                this.usuarioRepository.existsById(itemDto.getUsuario()
+                )){final Item novoItem = ItemMapper.of(itemDto,
                 this.categoriaRepository.findById(itemDto.getCategoria()).get(),
                 this.usuarioRepository.findById(itemDto.getUsuario()).get());
-                this.itemRepository.save(novoItem);
+            this.itemRepository.save(novoItem);}
+
     }
     // Achar todos os itens
     public List<Item> acharTodos(){

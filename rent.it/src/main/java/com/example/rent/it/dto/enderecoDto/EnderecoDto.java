@@ -1,6 +1,10 @@
-package com.example.rent.it.autenticacao.dto.enderecoDto;
+package com.example.rent.it.dto.enderecoDto;
 
-public class EnderecoCriacao {
+import jakarta.persistence.Column;
+
+public class EnderecoDto {
+
+    private Long id;
     private String logradouro;
 
     private String numero;
@@ -14,6 +18,25 @@ public class EnderecoCriacao {
     private String cidade;
 
     private String estado;
+
+    public EnderecoDto(Long id, String logradouro, String numero, String cep, String bairro, String complemento, String cidade, String estado) {
+        this.id = id;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.cep = cep;
+        this.bairro = bairro;
+        this.complemento = complemento;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getLogradouro() {
         return logradouro;

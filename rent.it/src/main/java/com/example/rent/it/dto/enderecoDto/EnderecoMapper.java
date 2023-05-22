@@ -1,4 +1,4 @@
-package com.example.rent.it.autenticacao.dto.enderecoDto;
+package com.example.rent.it.dto.enderecoDto;
 
 import com.example.rent.it.object.endereco.Endereco;
 

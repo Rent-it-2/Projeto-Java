@@ -1,14 +1,11 @@
 package com.example.rent.it.api.controllers;
 
-import com.example.rent.it.autenticacao.dto.enderecoDto.EnderecoCriacao;
-import com.example.rent.it.dto.usuarioDto.UsuarioCriacao;
+import com.example.rent.it.dto.enderecoDto.EnderecoCriacao;
 import com.example.rent.it.object.endereco.Endereco;
-import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.EnderecoRepository;
 import com.example.rent.it.service.EnderecoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
