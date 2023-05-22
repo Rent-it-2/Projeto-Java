@@ -46,4 +46,12 @@ public class CartaoService {
 
         return CartaoMapper.of(this.cartaoRepository.findById(id).get());
     }
+
+    public void deletarPorId(Long id) {
+         this.cartaoRepository.deleteById(id);
+    }
+
+    public boolean exiteById(Long id) {
+        return this.cartaoRepository.existsById(id);
+    }
 }

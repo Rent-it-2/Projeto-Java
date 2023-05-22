@@ -6,8 +6,15 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
 public class CartaoCriacaoDto {
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
+    private Long id;
     private String numCartao;
 
     private String validade;

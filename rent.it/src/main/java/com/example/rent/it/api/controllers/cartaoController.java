@@ -54,5 +54,32 @@ public class cartaoController {
         return ResponseEntity.status(200).body( this.cartaoService.acharPorId(id));
     }
 
+    @PatchMapping("/atuzalizar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Cartão cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
+    })
+
+    public ResponseEntity<CartaoDto> atualizar(@RequestBody CartaoCriacaoDto cartao) {
+        this.cartaoService.criar(cartao);
+        return ResponseEntity.status(201).build();
+    }
+
+    @DeleteMapping("/deletar/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Cartão cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
+    })
+    public ResponseEntity<CartaoDto> deleterPorId(@RequestParam Long id) {
+
+        if(this.cartaoService.exiteById(id)){
+            this.cartaoService.deletarPorId(id);
+        return ResponseEntity.status(200).build();
+     }
+        return  ResponseEntity.notFound() .build();
+    }
+
+
+
 
 }
