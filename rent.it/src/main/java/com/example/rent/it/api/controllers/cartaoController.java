@@ -30,9 +30,32 @@ public class cartaoController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
                })
 
-    public ResponseEntity<CartaoDto> criar(@RequestBody CartaoCriacaoDto cartao, @RequestParam Long id) {
+    public ResponseEntity<CartaoDto> criar(@RequestBody CartaoCriacaoDto cartao, @RequestBody Long id) {
         this.cartaoService.criar(cartao, id);
         return ResponseEntity.status(201).build();
     }
+
+    @GetMapping("/usuario/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Cartão cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
+    })
+
+    public ResponseEntity<CartaoDto> acharPorIdUsuario(@RequestParam Long id) {
+
+        return ResponseEntity.status(201).body( this.cartaoService.acharPorUsuario(id));
+    }
+
+    @GetMapping("/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Cartão cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
+    })
+
+    public ResponseEntity<CartaoDto> acharPorId(@RequestParam Long id) {
+
+        return ResponseEntity.status(200).body( this.cartaoService.acharPorId(id));
+    }
+
 
 }

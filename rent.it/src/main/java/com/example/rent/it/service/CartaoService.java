@@ -34,4 +34,16 @@ public class CartaoService {
         }
          return null;
     }
+
+    public CartaoDto acharPorUsuario(Long id) {
+        return CartaoMapper.of(this.cartaoRepository.findByUsuarioId(id));
+    }
+    public CartaoDto acharPorId(Long id) {
+
+        if (!this.cartaoRepository.existsById(id)){
+            return null;
+        }
+
+        return CartaoMapper.of(this.cartaoRepository.findById(id).get());
+    }
 }
