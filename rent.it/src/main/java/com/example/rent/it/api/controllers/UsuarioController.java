@@ -78,6 +78,7 @@ public class UsuarioController {
     public void deleteUsuario(@PathVariable Long id) {
         usuarioRepository.deleteById(id);
     }
+
     @PostMapping("/login")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso"),
