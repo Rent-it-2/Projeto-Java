@@ -27,8 +27,8 @@ public class cartaoController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
                })
 
-    public ResponseEntity<CartaoDto> criar(@RequestBody CartaoCriacaoDto cartao, @RequestBody Long id) {
-        this.cartaoService.criar(cartao, id);
+    public ResponseEntity<CartaoDto> criar(@RequestBody CartaoCriacaoDto cartao) {
+        this.cartaoService.criar(cartao);
         return ResponseEntity.status(201).build();
     }
 

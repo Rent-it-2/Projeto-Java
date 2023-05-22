@@ -20,12 +20,12 @@ public class CartaoService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public CartaoDto criar(CartaoCriacaoDto cartaoDto, Long id) {
+    public CartaoDto criar(CartaoCriacaoDto cartaoDto) {
         Cartao cartao = new Cartao();
 
         cartao = CartaoMapper.of(cartaoDto);
-        if(this.usuarioRepository.existsById(id)){
-           cartao.setUsuario(this.usuarioRepository.findById(id).get());
+        if(this.usuarioRepository.existsById(cartaoDto.getUsuario())){
+           cartao.setUsuario(this.usuarioRepository.findById(cartaoDto.getUsuario()).get());
            cartao = this.cartaoRepository.save(cartao);
 
             return CartaoMapper.of(cartao);

@@ -2,6 +2,9 @@ package com.example.rent.it.object.cartao;
 
 import com.example.rent.it.object.usuario.Usuario;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+
 @Entity
 @Table(name = "cartao")
 public class Cartao {
@@ -15,6 +18,7 @@ public class Cartao {
 
     @Column(name = "numCartao")
     private String numCartao;
+
     @Column(name = "validade")
     private String validade;
 

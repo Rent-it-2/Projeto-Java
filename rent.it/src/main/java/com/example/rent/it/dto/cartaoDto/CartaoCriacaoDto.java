@@ -15,6 +15,15 @@ public class CartaoCriacaoDto {
 
     private String cpfTitular;
 
+    private Long usuario;
+
+    public Long getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
+    }
 
     private String nomeImpresso;
 
