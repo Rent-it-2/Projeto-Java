@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
                         url = "https://github.com/Reginaldo-Santos-Junior",
                         email = "reginaldo.santosjr@sptech.school"
                 ),
-                license = @License(name = "DAS BRABA"),
+                license = @License(name = "Rent-It Version @1.0.1 "),
                 version = "1.0.0"
         )
 )

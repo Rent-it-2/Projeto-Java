@@ -1,10 +1,14 @@
 package com.example.rent.it.api.controllers;
 
+import com.example.rent.it.autenticacao.dto.enderecoDto.EnderecoCriacao;
+import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
 import com.example.rent.it.object.endereco.Endereco;
 import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.EnderecoRepository;
+import com.example.rent.it.service.EnderecoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +21,9 @@ public class EnderecoController {
 
     @Autowired
     private EnderecoRepository enderecoRepository;
+
+    @Autowired
+    private EnderecoService enderecoService;
 
     @GetMapping
     @ApiResponses(value = {
@@ -47,5 +54,15 @@ public class EnderecoController {
     })
     public void deleteEndereco(@PathVariable Long id) {
         enderecoRepository.deleteById(id);
+    }
+
+    @PostMapping("/cadastrar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="201", description = "Endereço cadastrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Endereço"),
+    })
+    public ResponseEntity<Void> criar(@RequestBody EnderecoCriacao enderecoCriacaoDto) {
+        this.enderecoService.criar(enderecoCriacaoDto);
+        return ResponseEntity.status(201).build();
     }
 }

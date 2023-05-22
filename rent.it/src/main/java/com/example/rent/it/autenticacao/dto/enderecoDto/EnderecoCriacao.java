@@ -1,44 +1,19 @@
-package com.example.rent.it.object.endereco;
+package com.example.rent.it.autenticacao.dto.enderecoDto;
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Endereco")
-public class Endereco {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idEndereco", unique = true)
-    private Long id;
-
-    @Column(name = "Logradouro")
+public class EnderecoCriacao {
     private String logradouro;
 
-    @Column(name = "numero")
     private String numero;
 
-    @Column(name = "Cep")
     private String cep;
 
-    @Column(name = "Bairro")
     private String bairro;
 
-    @Column(name = "Complemento")
     private String complemento;
 
-    @Column(name = "Cidade")
     private String cidade;
 
-    @Column(name = "Estado")
     private String estado;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getLogradouro() {
         return logradouro;
