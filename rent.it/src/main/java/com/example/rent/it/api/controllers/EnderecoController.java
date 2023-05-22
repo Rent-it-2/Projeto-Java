@@ -1,7 +1,7 @@
 package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.autenticacao.dto.enderecoDto.EnderecoCriacao;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
+import com.example.rent.it.dto.usuarioDto.UsuarioCriacao;
 import com.example.rent.it.object.endereco.Endereco;
 import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.repository.EnderecoRepository;
