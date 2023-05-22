@@ -1,8 +1,10 @@
 package com.example.rent.it.service;
 
-import com.example.rent.it.autenticacao.dto.favotirosDto.FavoritosMapper;
-import com.example.rent.it.autenticacao.dto.favotirosDto.ItemFavoritarDto;
-import com.example.rent.it.autenticacao.dto.itemDto.*;
+import com.example.rent.it.dto.favotirosDto.FavoritosMapper;
+import com.example.rent.it.dto.favotirosDto.ItemFavoritarDto;
+import com.example.rent.it.dto.itemDto.ItemCriacaoDto;
+import com.example.rent.it.dto.itemDto.ItemDto;
+import com.example.rent.it.dto.itemDto.ItemMapper;
 import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.CategoriaRepository;

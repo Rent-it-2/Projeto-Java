@@ -1,4 +1,4 @@
-package com.example.rent.it.autenticacao.dto.cartaoDto;
+package com.example.rent.it.dto.cartaoDto;
 
 import com.example.rent.it.object.usuario.Usuario;
 import jakarta.persistence.*;

@@ -1,19 +1,23 @@
-package com.example.rent.it.autenticacao.dto.itemDto;
+package com.example.rent.it.dto.itemDto;
 
-import com.example.rent.it.object.categoria.Categoria;
-
-import java.sql.Blob;
-
-public class ItemDto {
+public class ItemCriacaoDto {
     private Long id;
 
     private String nome;
 
-    private String categoria;
+    private Integer categoria;
+
+    private Long usuario;
     private String descricao;
     private double valorDia;
 
+    public Long getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
+    }
 
     public Long getId() {
         return id;
@@ -32,11 +36,11 @@ public class ItemDto {
     }
 
 
-    public String getCategoria() {
+    public Integer getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Integer categoria) {
         this.categoria = categoria;
     }
 

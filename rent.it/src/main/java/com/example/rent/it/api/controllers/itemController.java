@@ -1,9 +1,9 @@
 package com.example.rent.it.api.controllers;
 
-import com.example.rent.it.autenticacao.dto.itemDto.ItemCriacaoDto;
-import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
-import com.example.rent.it.autenticacao.dto.favotirosDto.ItemFavoritarDto;
-import com.example.rent.it.autenticacao.dto.itemDto.ItemMapper;
+import com.example.rent.it.dto.itemDto.ItemCriacaoDto;
+import com.example.rent.it.dto.itemDto.ItemDto;
+import com.example.rent.it.dto.favotirosDto.ItemFavoritarDto;
+import com.example.rent.it.dto.itemDto.ItemMapper;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.service.ItemService;

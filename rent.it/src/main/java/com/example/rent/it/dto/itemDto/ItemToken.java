@@ -1,11 +1,6 @@
-package com.example.rent.it.autenticacao.dto.itemDto;
+package com.example.rent.it.dto.itemDto;
 
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
 import com.example.rent.it.object.categoria.Categoria;
-import com.example.rent.it.object.usuario.Usuario;
-
-import java.sql.Blob;
-import java.util.List;
 
 public class ItemToken {
     private Long id;

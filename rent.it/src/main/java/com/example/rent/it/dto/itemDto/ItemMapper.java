@@ -1,14 +1,10 @@
-package com.example.rent.it.autenticacao.dto.itemDto;
+package com.example.rent.it.dto.itemDto;
 import com.example.rent.it.object.categoria.Categoria;
-import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.usuario.Usuario;
-import com.example.rent.it.repository.CategoriaRepository;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class ItemMapper {
 

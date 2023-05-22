@@ -87,4 +87,16 @@ public class TransacaoController {
 
         return this.transacaoService.getTransacaoPorPreco(preco, id);
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }

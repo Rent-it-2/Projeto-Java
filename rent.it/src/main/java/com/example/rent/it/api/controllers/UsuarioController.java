@@ -1,7 +1,7 @@
 package com.example.rent.it.api.controllers;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioCriacao;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioLogin;
-import com.example.rent.it.autenticacao.dto.usuarioDto.UsuarioToken;
+import com.example.rent.it.dto.usuarioDto.UsuarioCriacao;
+import com.example.rent.it.dto.usuarioDto.UsuarioLogin;
+import com.example.rent.it.dto.usuarioDto.UsuarioToken;
 import com.example.rent.it.object.usuario.*;
 import com.example.rent.it.service.UsuarioService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 import com.example.rent.it.repository.UsuarioRepository;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;

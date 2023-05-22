@@ -1,4 +1,4 @@
-package com.example.rent.it.autenticacao.dto.usuarioDto;
+package com.example.rent.it.dto.usuarioDto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

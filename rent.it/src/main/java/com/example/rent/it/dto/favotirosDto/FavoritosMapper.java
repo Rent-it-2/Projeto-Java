@@ -1,6 +1,6 @@
-package com.example.rent.it.autenticacao.dto.favotirosDto;
+package com.example.rent.it.dto.favotirosDto;
 
-import com.example.rent.it.autenticacao.dto.itemDto.ItemDto;
+import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.usuario.Usuario;

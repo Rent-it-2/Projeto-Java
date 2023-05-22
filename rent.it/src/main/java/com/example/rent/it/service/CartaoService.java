@@ -1,8 +1,8 @@
 package com.example.rent.it.service;
 
-import com.example.rent.it.autenticacao.dto.cartaoDto.CartaoCriacaoDto;
-import com.example.rent.it.autenticacao.dto.cartaoDto.CartaoDto;
-import com.example.rent.it.autenticacao.dto.cartaoDto.CartaoMapper;
+import com.example.rent.it.dto.cartaoDto.CartaoCriacaoDto;
+import com.example.rent.it.dto.cartaoDto.CartaoDto;
+import com.example.rent.it.dto.cartaoDto.CartaoMapper;
 import com.example.rent.it.object.cartao.Cartao;
 import com.example.rent.it.repository.CartaoRepository;
 import com.example.rent.it.repository.UsuarioRepository;

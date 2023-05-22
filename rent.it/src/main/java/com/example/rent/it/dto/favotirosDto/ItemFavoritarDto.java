@@ -1,4 +1,4 @@
-package com.example.rent.it.autenticacao.dto.favotirosDto;
+package com.example.rent.it.dto.favotirosDto;
 
 public class ItemFavoritarDto {
 
