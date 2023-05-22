@@ -20,6 +20,7 @@ public class ItemMapper {
     public static Item of(ItemCriacaoDto itemDto, Categoria categoria,
                           Usuario usuario) {
         Item item = new Item();
+        item.setId(itemDto.getId());
         item.setNome(itemDto.getNome());
         item.setDescricao(itemDto.getDescricao());
         item.setValorDia(itemDto.getValorDia());
@@ -38,7 +39,6 @@ public class ItemMapper {
         itemToken.setCategoria((item.getCategoria()));
         itemToken.setDescricao(item.getDescricao());
         itemToken.setNome(item.getNome());
-        itemToken.setTempoLocacao(item.getTempoLocacao());
         itemToken.setValorDia(item.getValorDia());
         itemToken.setToken(token);
         return itemToken;

@@ -82,4 +82,13 @@ public class ItemService {
 
         return FavoritosMapper.of(this.favoritoRepository.findByUsuarioId(id));
     }
+
+    public Integer update(ItemCriacaoDto item) {
+          Item itemUpdate = ItemMapper.of(item,
+                  this.categoriaRepository.findById(item.getCategoria()).get(),
+                  this.usuarioRepository.findById(item.getUsuario()).get());
+
+        return this.itemRepository.updateItem(itemUpdate.getNome(), itemUpdate.getDescricao()
+        ,itemUpdate.getValorDia(), itemUpdate.getCategoria(),itemUpdate.getId());
+    }
 }

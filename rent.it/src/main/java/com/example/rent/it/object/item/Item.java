@@ -25,8 +25,7 @@ public class Item {
     private String descricao;
     @Column(name = "valor")
     private double valorDia;
-    @Column(name = "qtdDias")
-    private int tempoLocacao;
+
     @Column(name = "disponivel")
     private int  disponivel;
     @Column(name = "dtCadastro")
@@ -110,11 +109,5 @@ public class Item {
         this.id = id;
     }
 
-    public int getTempoLocacao() {
-        return tempoLocacao;
-    }
 
-    public void setTempoLocacao(int tempoLocacao) {
-        this.tempoLocacao = tempoLocacao;
-    }
 }

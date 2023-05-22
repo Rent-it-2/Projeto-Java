@@ -26,15 +26,17 @@ public class itemController {
     private ItemService itemService;
 
 
+
+
     @PutMapping("/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Item atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado Item com o ID especificado")
     })
-    public Item updateItem(@PathVariable Long id, @RequestBody Item item) {
+    public Integer updateItem(@PathVariable Long id, @RequestBody ItemCriacaoDto item) {
         if (this.itemRepository.existsById(id)) {
             item.setId(id);
-            return this.itemRepository.save(item);
+            return this.itemService.update(item);
         }
         return null;
     }

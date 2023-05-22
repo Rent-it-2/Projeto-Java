@@ -1,5 +1,6 @@
 package com.example.rent.it.repository;
 
+import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,6 +15,11 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("SELECT i.id, i.nome, i.categoria, i.valorDia FROM Item i")
     List<Object []> findAllItens();
     boolean existsById(Long id);
+    @Modifying
+    @Transactional
+    @Query("UPDATE Item i SET i.nome = ?1, i.descricao = ?2, " +
+            "i.valorDia = ?3, i.categoria = ?4 WHERE i.id = ?5")
+    Integer updateItem(String nome, String descricao, double valorDia, Categoria categoria, Long id);
     Optional<Item> findById(Long id);
 
     Optional<List<Item>> findByNomeIgnoreCase(String nome);
