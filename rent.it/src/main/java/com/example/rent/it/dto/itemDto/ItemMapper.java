@@ -23,6 +23,7 @@ public class ItemMapper {
         item.setId(itemDto.getId());
         item.setNome(itemDto.getNome());
         item.setDescricao(itemDto.getDescricao());
+        item.setDisponivel(itemDto.getDisponivel());
         item.setValorDia(itemDto.getValorDia());
         item.setCategoria(categoria);
         item.setUsuario(usuario);
@@ -30,7 +31,23 @@ public class ItemMapper {
         return item;
     }
 
+    public static ItemRetornoDto of (Item item){
+        ItemRetornoDto retorno = new ItemRetornoDto();
 
+        retorno.setId(item.getId());
+        retorno.setNomeItem(item.getNome());
+        retorno.setDescricao(item.getDescricao());
+        retorno.setValorDia(item.getValorDia());
+        retorno.setDisponivel(item.getDisponivel());
+        retorno.setCategoria(item.getCategoria().getNomeCategoria());
+        retorno.setIdUsuario(item.getUsuario().getId());
+        retorno.setNomeUsuario(item.getUsuario().getNome());
+        retorno.setApelidoUsario(item.getUsuario().getApelido());
+        retorno.setEmail(item.getUsuario().getEmail());
+        retorno.setTelefone(item.getUsuario().getTelefone());
+        return retorno;
+
+    }
 
     public static ItemToken of(Item item, String token) {
         ItemToken itemToken = new ItemToken();

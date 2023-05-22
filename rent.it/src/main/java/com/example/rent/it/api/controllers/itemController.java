@@ -4,6 +4,7 @@ import com.example.rent.it.dto.itemDto.ItemCriacaoDto;
 import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.dto.favotirosDto.ItemFavoritarDto;
 import com.example.rent.it.dto.itemDto.ItemMapper;
+import com.example.rent.it.dto.itemDto.ItemRetornoDto;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.service.ItemService;
@@ -54,10 +55,11 @@ public class itemController {
             @ApiResponse(responseCode = "200", description = "Retorna o item com o ID especificado"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado item com o ID especificado")
     })
-    public ResponseEntity<Item> getItensById(@PathVariable Long id) {
+    public ResponseEntity<ItemRetornoDto> getItensById(@PathVariable Long id) {
         Optional<Item> itemOptional = itemRepository.findById(id);
         if(itemOptional.isPresent()) {
-            return ResponseEntity.ok(itemOptional.get());
+      
+            return ResponseEntity.ok(ItemMapper.of(itemOptional.get()));
         } else {
             return ResponseEntity.notFound().build();
         }

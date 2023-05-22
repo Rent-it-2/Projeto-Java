@@ -7,6 +7,16 @@ public class ItemCriacaoDto {
 
     private Integer categoria;
 
+    private Integer disponivel;
+
+    public Integer getDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(Integer disponivel) {
+        this.disponivel = disponivel;
+    }
+
     private Long usuario;
     private String descricao;
     private double valorDia;
