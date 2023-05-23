@@ -20,7 +20,7 @@ public class CartaoMapper {
         List<CartaoDto> cartaoDtos = new ArrayList<>();
         for(int i = 0; i < cartao.size(); i++) {
             final CartaoDto cartaoDto = new CartaoDto();
-            cartaoDto.setId(cartaoDto.getId());
+            cartaoDto.setId(cartao.get(i).getId());
             cartaoDto.setNumCartao(cartao.get(i).getNumCartao());
             cartaoDto.setValidade(cartao.get(i).getValidade());
             cartaoDto.setNomeUsuario(cartao.get(i).getUsuario().getNome());
