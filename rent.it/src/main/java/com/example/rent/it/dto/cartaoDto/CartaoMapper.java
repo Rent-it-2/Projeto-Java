@@ -23,7 +23,7 @@ public class CartaoMapper {
             cartaoDto.setId(cartao.get(i).getId());
             cartaoDto.setNumCartao(cartao.get(i).getNumCartao());
             cartaoDto.setValidade(cartao.get(i).getValidade());
-            cartaoDto.setNomeUsuario(cartao.get(i).getUsuario().getNome());
+            cartaoDto.setNomeUsuario(cartao.get(i).getNumCartao());
 
             cartaoDtos.add(cartaoDto);
 
