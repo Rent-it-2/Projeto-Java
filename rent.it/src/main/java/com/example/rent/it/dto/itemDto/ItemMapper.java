@@ -70,6 +70,7 @@ public class ItemMapper {
            itemDto.setId(itens.get(i).getId());
            itemDto.setNome(itens.get(i).getNome());
            itemDto.setCategoria(itens.get(i).getCategoria().getNomeCategoria());
+           itemDto.setDescricao(itens.get(i).getDescricao());
            itemDto.setValorDia(itens.get(i).getValorDia());
            itensDto.add(itemDto);
 
