@@ -22,7 +22,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     Integer updateItem(String nome, String descricao, double valorDia, Categoria categoria, Long id);
     Optional<Item> findById(Long id);
 
-    Optional<List<Item>> findByNomeIgnoreCase(String nome);
+    Optional<List<Item>> findByNomeContainingIgnoreCase(String nome);
     @Query("SELECT i.foto FROM Item i WHERE i.id = ?1")
     byte[] findFotoById(Long id);
 

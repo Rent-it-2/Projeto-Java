@@ -8,6 +8,8 @@ import com.example.rent.it.repository.CartaoRepository;
 import com.example.rent.it.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CartaoService {
 
@@ -35,7 +37,7 @@ public class CartaoService {
          return null;
     }
 
-    public CartaoDto acharPorUsuario(Long id) {
+    public List<CartaoDto> acharPorUsuario(Long id) {
         return CartaoMapper.of(this.cartaoRepository.findByUsuarioId(id));
     }
     public CartaoDto acharPorId(Long id) {

@@ -2,16 +2,35 @@ package com.example.rent.it.dto.cartaoDto;
 
 import com.example.rent.it.object.cartao.Cartao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CartaoMapper {
 
     public static CartaoDto of(Cartao cartao){
           final CartaoDto cartaoDto = new CartaoDto();
-
+         cartaoDto.setId(cartaoDto.getId());
          cartaoDto.setNumCartao(cartao.getNumCartao());
          cartaoDto.setValidade(cartao.getValidade());
          cartaoDto.setNomeUsuario(cartao.getUsuario().getNome());
          return cartaoDto;
     }
+
+    public static List<CartaoDto> of(List<Cartao> cartao){
+        List<CartaoDto> cartaoDtos = new ArrayList<>();
+        for(int i = 0; i < cartao.size(); i++) {
+            final CartaoDto cartaoDto = new CartaoDto();
+            cartaoDto.setId(cartaoDto.getId());
+            cartaoDto.setNumCartao(cartao.get(i).getNumCartao());
+            cartaoDto.setValidade(cartao.get(i).getValidade());
+            cartaoDto.setNomeUsuario(cartao.get(i).getUsuario().getNome());
+
+            cartaoDtos.add(cartaoDto);
+
+        }
+        return cartaoDtos;
+    }
+
 
     public static Cartao of(CartaoCriacaoDto dto){
 

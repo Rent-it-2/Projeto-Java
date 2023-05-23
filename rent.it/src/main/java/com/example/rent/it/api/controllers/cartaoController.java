@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cartaos")
 public class cartaoController {
@@ -38,7 +40,7 @@ public class cartaoController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
     })
 
-    public ResponseEntity<CartaoDto> acharPorIdUsuario(@RequestParam Long id) {
+    public ResponseEntity<List<CartaoDto>> acharPorIdUsuario(@RequestParam Long id) {
 
         return ResponseEntity.status(201).body( this.cartaoService.acharPorUsuario(id));
     }

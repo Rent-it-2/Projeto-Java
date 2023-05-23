@@ -88,10 +88,10 @@ public class itemController {
             @ApiResponse(responseCode ="200", description = "Itens encontrados"),
             @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
     })
-    public ResponseEntity<List<Item>> getItemByNome(@PathVariable String nome){
-        Optional<List<Item>> itemOptional = itemRepository.findByNomeIgnoreCase(nome);
+    public ResponseEntity<List<ItemDto>> getItemByNome(@PathVariable String nome){
+        Optional<List<Item>> itemOptional = itemRepository.findByNomeContainingIgnoreCase(nome);
         if(itemOptional.isPresent()) {
-            return ResponseEntity.ok(itemOptional.get());
+            return ResponseEntity.ok(ItemMapper.of(itemOptional.get()));
         } else {
             return ResponseEntity.notFound().build();
         }

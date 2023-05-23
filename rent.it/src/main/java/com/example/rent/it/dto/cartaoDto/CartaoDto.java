@@ -2,9 +2,20 @@ package com.example.rent.it.dto.cartaoDto;
 
 public class CartaoDto {
 
+   private Long id;
+
+
+
     private String numCartao;
     private String validade;
     private String nomeUsuario;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNumCartao() {
         return numCartao;
