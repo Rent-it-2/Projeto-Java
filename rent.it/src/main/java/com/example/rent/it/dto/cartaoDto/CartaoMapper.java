@@ -17,7 +17,8 @@ public class CartaoMapper {
 
         final Cartao cartao = new Cartao();
         cartao.setId(dto.getId());
-        cartao.setCpfTitular(dto.getCpfTitular().replace(".", ""));
+        cartao.setCpfTitular(dto.getCpfTitular().replace(".", "")
+                .replace("-",""));
         cartao.setNomeImpresso(dto.getNomeImpresso());
         cartao.setNumCartao(dto.getNumCartao().replace(" ",""));
         cartao.setValidade(dto.getValidade());

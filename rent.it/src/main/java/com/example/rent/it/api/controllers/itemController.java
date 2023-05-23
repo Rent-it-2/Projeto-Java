@@ -58,7 +58,7 @@ public class itemController {
     public ResponseEntity<ItemRetornoDto> getItensById(@PathVariable Long id) {
         Optional<Item> itemOptional = itemRepository.findById(id);
         if(itemOptional.isPresent()) {
-      
+
             return ResponseEntity.ok(ItemMapper.of(itemOptional.get()));
         } else {
             return ResponseEntity.notFound().build();
