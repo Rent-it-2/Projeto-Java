@@ -33,4 +33,20 @@ public class EnderecoMapper {
         }
         return retorno;
     }
+
+    public static EnderecoDto of(Endereco e){
+        EnderecoDto retorno = new EnderecoDto();
+
+            EnderecoDto dto = new EnderecoDto();
+            dto.setId(e.getId());
+            dto.setCep(e.getCep());
+            dto.setCidade(e.getCidade());
+            dto.setNumero(e.getNumero());
+            dto.setLogradouro(e.getLogradouro());
+            dto.setBairro(e.getBairro());
+            dto.setComplemento(e.getComplemento());
+
+
+        return retorno;
+    }
 }

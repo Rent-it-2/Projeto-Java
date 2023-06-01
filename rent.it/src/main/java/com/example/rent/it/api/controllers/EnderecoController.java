@@ -59,16 +59,19 @@ public class EnderecoController {
             @ApiResponse(responseCode ="201", description = "Endereço cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Endereço"),
     })
-    public ResponseEntity<Void> criar(@RequestBody EnderecoCriacao enderecoCriacaoDto) {
-        this.enderecoService.criar(enderecoCriacaoDto);
-        return ResponseEntity.status(201).build();
+    public ResponseEntity<EnderecoDto> criar(@RequestBody EnderecoCriacao enderecoCriacaoDto) {
+        EnderecoDto retorno = this.enderecoService.criar(enderecoCriacaoDto);
+        if(retorno != null) {
+            return ResponseEntity.status(201).build();
+        }
+        return ResponseEntity.status(401).build();
     }
 
     @GetMapping("/usuario/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Endereços listados com sucesso")
     })
-    public ResponseEntity<List<EnderecoDto>> getEnderecoByUser(@RequestParam Long id) {
+    public ResponseEntity<EnderecoDto> getEnderecoByUser(@RequestParam Long id) {
 
         return ResponseEntity.ok(this.enderecoService.findByUsuario(id));
     }

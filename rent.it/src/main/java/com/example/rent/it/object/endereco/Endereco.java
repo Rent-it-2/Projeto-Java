@@ -25,7 +25,10 @@ public class Endereco {
 
     @Column(name = "Cidade")
     private String cidade;
-
+    @Column(name = "logradouro")
+    private String logradouro;
+    @Column(name = "bairro")
+    private String bairro;
 
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
@@ -83,5 +86,19 @@ public class Endereco {
         this.cidade = cidade;
     }
 
+    public String getLogradouro() {
+        return logradouro;
+    }
 
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 }

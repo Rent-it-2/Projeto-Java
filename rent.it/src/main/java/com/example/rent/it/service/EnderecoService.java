@@ -19,15 +19,21 @@ public class EnderecoService {
     @Autowired
     private  UsuarioRepository usuarioRepository;
 
-    public void criar(EnderecoCriacao enderecoCriacaoDto) {
+    public EnderecoDto criar(EnderecoCriacao enderecoCriacaoDto) {
         final Endereco novoEndereco = EnderecoMapper.of(enderecoCriacaoDto,
                 usuarioRepository.findById(enderecoCriacaoDto.getUsuario()).get());
-        this.enderecoRepository.save(novoEndereco);
+
+          if(!this.enderecoRepository.existsByUsuario(novoEndereco.getUsuario())) {
+             return EnderecoMapper.of(this.enderecoRepository.save(novoEndereco));
+          }else{
+              return null;
+          }
+
     }
 
-    public List<EnderecoDto> findByUsuario(Long id) {
+    public EnderecoDto findByUsuario(Long id) {
 
-        return EnderecoMapper.of(this.enderecoRepository.findAllByUsuario(
+        return EnderecoMapper.of(this.enderecoRepository.findByUsuario(
                 this.usuarioRepository.findById(id).get()
         ));
     }

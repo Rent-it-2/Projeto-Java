@@ -5,13 +5,29 @@ import jakarta.persistence.Column;
 public class EnderecoDto {
 
     private Long id;
-
     private String numero;
 
     private String cep;
     private String complemento;
     private String cidade;
+    private String logradouro;
+    private String bairro;
 
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
 
     public Long getId() {
         return id;
