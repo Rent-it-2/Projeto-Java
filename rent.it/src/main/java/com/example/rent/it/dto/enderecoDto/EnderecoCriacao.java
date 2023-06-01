@@ -1,27 +1,27 @@
 package com.example.rent.it.dto.enderecoDto;
 
 public class EnderecoCriacao {
-    private String logradouro;
 
     private String numero;
 
     private String cep;
 
-    private String bairro;
-
     private String complemento;
 
     private String cidade;
 
-    private String estado;
 
-    public String getLogradouro() {
-        return logradouro;
+
+    private Long usuario;
+
+    public Long getUsuario() {
+        return usuario;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setUsuario(Long usuario) {
+        this.usuario = usuario;
     }
+
 
     public String getNumero() {
         return numero;
@@ -37,14 +37,6 @@ public class EnderecoCriacao {
 
     public void setCep(String cep) {
         this.cep = cep;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
     }
 
     public String getComplemento() {
@@ -63,11 +55,5 @@ public class EnderecoCriacao {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }

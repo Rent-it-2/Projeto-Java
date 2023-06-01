@@ -5,6 +5,8 @@ import com.example.rent.it.dto.favotirosDto.ItemFavoritarDto;
 import com.example.rent.it.dto.itemDto.ItemCriacaoDto;
 import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.dto.itemDto.ItemMapper;
+import com.example.rent.it.dto.itemDto.ItemPesquisaAvancadaDto;
+import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.favoritos.Favoritos;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.CategoriaRepository;
@@ -13,6 +15,7 @@ import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -90,5 +93,18 @@ public class ItemService {
 
         return this.itemRepository.updateItem(itemUpdate.getNome(), itemUpdate.getDescricao()
         ,itemUpdate.getValorDia(), itemUpdate.getCategoria(),itemUpdate.getId());
+    }
+
+    public List<ItemDto> pesquisaAvancada(ItemPesquisaAvancadaDto itemPesquisa) {
+
+        List<Categoria> categorias =
+                this.categoriaRepository.findAllById(itemPesquisa.getCategorias());
+
+
+        return ItemMapper.of(
+                this.itemRepository.findAllByNomeContainingIgnoreCaseAndCategoriaInAndValorDiaLessThan(
+                        itemPesquisa.getNome(),categorias, itemPesquisa.getPreco()));
+
+
     }
 }

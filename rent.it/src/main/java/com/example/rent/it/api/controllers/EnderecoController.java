@@ -1,6 +1,7 @@
 package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.dto.enderecoDto.EnderecoCriacao;
+import com.example.rent.it.dto.enderecoDto.EnderecoDto;
 import com.example.rent.it.object.endereco.Endereco;
 import com.example.rent.it.repository.EnderecoRepository;
 import com.example.rent.it.service.EnderecoService;
@@ -61,5 +62,14 @@ public class EnderecoController {
     public ResponseEntity<Void> criar(@RequestBody EnderecoCriacao enderecoCriacaoDto) {
         this.enderecoService.criar(enderecoCriacaoDto);
         return ResponseEntity.status(201).build();
+    }
+
+    @GetMapping("/usuario/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Endereços listados com sucesso")
+    })
+    public ResponseEntity<List<EnderecoDto>> getEnderecoByUser(@RequestParam Long id) {
+
+        return ResponseEntity.ok(this.enderecoService.findByUsuario(id));
     }
 }

@@ -28,6 +28,8 @@ public class Usuario {
     @Column(name = "ftPerfil")
     private byte[] foto;
 
+
+
     public byte[] getFoto() {
         return foto;
     }

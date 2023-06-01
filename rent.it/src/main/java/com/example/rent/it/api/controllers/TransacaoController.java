@@ -1,21 +1,18 @@
 package com.example.rent.it.api.controllers;
 
-import com.example.rent.it.csv.ListaAluguel;
+import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.object.transacao.Transacao;
-import com.example.rent.it.object.usuario.Usuario;
-import com.example.rent.it.ordenacao.ListaObj;
-import com.example.rent.it.repository.UsuarioRepository;
 import com.example.rent.it.service.TransacaoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -91,10 +88,44 @@ public class TransacaoController {
 
 
 
+   //exportação do primeiro txt com itens alugados(pilha)
+
+    @GetMapping("/alugados/txt/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Arquivo enviado com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+    })
+
+    public ResponseEntity<byte[]>getAlugados(@RequestParam Long id){
+
+        try {
+            InputStream fileInputStream = new FileInputStream(this.transacaoService.getAlugados(id));
+            return ResponseEntity.status(200)
+                    .header("Content-Disposition",
+                            "attachment; filename=" + LocalDate.now() + ".txt")
+                    .body(fileInputStream.readAllBytes());
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //importação de itens para alugar(fila)
 
 
+    @PostMapping("/alugar/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Itens Criados com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+    })
+
+    public ResponseEntity<List<ItemDto>> alugaItensEmMassa(@RequestParam Long id,
+                                                           @RequestParam("arquivo") File file){
 
 
+        return ResponseEntity.ok(this.transacaoService.alugarEmMassa(id, file));
+    }
 
 
 

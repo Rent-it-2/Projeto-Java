@@ -1,5 +1,6 @@
 package com.example.rent.it.repository;
 
+import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,4 +34,9 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     void atualizaFoto(Long id, byte[] foto);
 
     List<Item> findByUsuarioId(Long id);
+   //@Query("SELECT * FROM Item i WHERE i.nome like '%?1%' AND i.categoria " +
+     //      "in ?2  AND i.valorDia < ?3")
+   //List<Item> pesquisaAvancada(String nome, List<Integer> categorias, Double preco);
+
+   List<Item> findAllByNomeContainingIgnoreCaseAndCategoriaInAndValorDiaLessThan(String nome, List<Categoria> categoria, Double preco);
 }

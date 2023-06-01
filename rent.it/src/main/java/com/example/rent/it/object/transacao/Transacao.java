@@ -25,8 +25,16 @@ public class Transacao {
     private Date dtFim;
     @Column(name = "recebido")
      private int recebido;
+    @Column(name = "valorFinal")
+    private Double valorFinal;
 
+    public Double getValorFinal() {
+        return valorFinal;
+    }
 
+    public void setValorFinal(Double valorFinal) {
+        this.valorFinal = valorFinal;
+    }
 
     public Long getIdTransacao() {
         return idTransacao;

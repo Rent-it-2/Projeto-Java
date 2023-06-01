@@ -1,4 +1,6 @@
 package com.example.rent.it.dto.itemDto;
+import com.example.rent.it.armazenamento.FilaObj;
+import com.example.rent.it.armazenamento.PilhaObj;
 import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.usuario.Usuario;
@@ -76,6 +78,25 @@ public class ItemMapper {
 
         }
        return itensDto;
+    }
+
+    public static List<ItemDto> of(FilaObj<Item> itens){
+        List<ItemDto> itensDto = new ArrayList<>();
+        Item item;
+
+        for (int i = 0; i < itens.getTamanho();i++ ) {
+            item = itens.poll();
+           ItemDto itemDto  = new ItemDto();
+
+            itemDto.setId(item.getId());
+            itemDto.setNome(item.getNome());
+            itemDto.setCategoria(item.getCategoria().getNomeCategoria());
+            itemDto.setDescricao(item.getDescricao());
+            itemDto.setValorDia(item.getValorDia());
+            itensDto.add(itemDto);
+
+        }
+        return itensDto;
     }
 
     }

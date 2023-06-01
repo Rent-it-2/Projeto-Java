@@ -30,12 +30,25 @@ public class Item {
     private int  disponivel;
     @Column(name = "dtCadastro")
     private Date dtCadastro;
-    @OneToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "fkCategoria")
     private Categoria categoria;
     @ManyToOne
     @JoinColumn(name = "fkUsuario")
     private Usuario usuario;
+
+    public Item() {
+    }
+
+    public Item( String nome, String descricao, double valorDia, int disponivel,Categoria categoria, Usuario usuario) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.valorDia = valorDia;
+        this.disponivel = disponivel;
+        this.categoria = categoria;
+        this.usuario = usuario;
+
+    }
 
     public Usuario getUsuario() {
         return usuario;

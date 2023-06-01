@@ -1,5 +1,6 @@
 package com.example.rent.it.object.endereco;
 
+import com.example.rent.it.object.usuario.Usuario;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,8 +12,6 @@ public class Endereco {
     @Column(name = "idEndereco", unique = true)
     private Long id;
 
-    @Column(name = "Logradouro")
-    private String logradouro;
 
     @Column(name = "numero")
     private String numero;
@@ -20,8 +19,6 @@ public class Endereco {
     @Column(name = "Cep")
     private String cep;
 
-    @Column(name = "Bairro")
-    private String bairro;
 
     @Column(name = "Complemento")
     private String complemento;
@@ -29,8 +26,10 @@ public class Endereco {
     @Column(name = "Cidade")
     private String cidade;
 
-    @Column(name = "Estado")
-    private String estado;
+
+    @ManyToOne
+    @JoinColumn(name = "fkUsuario")
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -40,13 +39,7 @@ public class Endereco {
         this.id = id;
     }
 
-    public String getLogradouro() {
-        return logradouro;
-    }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
-    }
 
     public String getNumero() {
         return numero;
@@ -64,13 +57,7 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getBairro() {
-        return bairro;
-    }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
-    }
 
     public String getComplemento() {
         return complemento;
@@ -84,15 +71,17 @@ public class Endereco {
         return cidade;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
 }

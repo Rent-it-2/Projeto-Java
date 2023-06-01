@@ -1,10 +1,7 @@
 package com.example.rent.it.api.controllers;
 
-import com.example.rent.it.dto.itemDto.ItemCriacaoDto;
-import com.example.rent.it.dto.itemDto.ItemDto;
+import com.example.rent.it.dto.itemDto.*;
 import com.example.rent.it.dto.favotirosDto.ItemFavoritarDto;
-import com.example.rent.it.dto.itemDto.ItemMapper;
-import com.example.rent.it.dto.itemDto.ItemRetornoDto;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.service.ItemService;
@@ -158,6 +155,17 @@ public class itemController {
     public ResponseEntity<List<ItemDto>> findByFavoritos(@RequestParam Long id) {
 
         return ResponseEntity.status(201).body(this.itemService.acharFavoritos(id));
+    }
+
+    @PostMapping("/pesquisar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode ="200", description = "Itens encontrados"),
+            @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
+    })
+    public ResponseEntity<List<ItemDto>> pesquisaAvancada(@RequestBody ItemPesquisaAvancadaDto
+                                                          itemPesquisa){
+
+        return ResponseEntity.ok(itemService.pesquisaAvancada(itemPesquisa));
     }
 
 }
