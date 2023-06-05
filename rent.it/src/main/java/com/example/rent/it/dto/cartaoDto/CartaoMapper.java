@@ -8,11 +8,12 @@ import java.util.List;
 public class CartaoMapper {
 
     public static CartaoDto of(Cartao cartao){
-          final CartaoDto cartaoDto = new CartaoDto();
-         cartaoDto.setId(cartaoDto.getId());
+         final CartaoDto cartaoDto = new CartaoDto();
+         cartaoDto.setId(cartao.getId());
          cartaoDto.setNumCartao(cartao.getNumCartao());
          cartaoDto.setValidade(cartao.getValidade());
          cartaoDto.setNomeUsuario(cartao.getUsuario().getNome());
+         cartaoDto.setCpf(cartao.getCpfTitular());
          return cartaoDto;
     }
 

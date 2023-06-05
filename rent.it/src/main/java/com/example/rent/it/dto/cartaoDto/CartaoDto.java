@@ -4,7 +4,7 @@ public class CartaoDto {
 
    private Long id;
 
-
+    private String cpf;
 
     private String numCartao;
     private String validade;
@@ -39,5 +39,13 @@ public class CartaoDto {
 
     public void setNomeUsuario(String nomeUsuario) {
         this.nomeUsuario = nomeUsuario;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }

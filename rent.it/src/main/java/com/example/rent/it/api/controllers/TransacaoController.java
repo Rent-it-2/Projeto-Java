@@ -6,13 +6,12 @@ import com.example.rent.it.service.TransacaoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -114,18 +113,24 @@ public class TransacaoController {
     //importação de itens para alugar(fila)
 
 
-    @PostMapping("/alugar/{id}")
+    @PostMapping(value = "/alugar/{id}",   consumes = {MediaType.TEXT_PLAIN_VALUE})
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Itens Criados com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
     })
 
-    public ResponseEntity<List<ItemDto>> alugaItensEmMassa(@RequestParam Long id,
-                                                           @RequestParam("arquivo") File file){
+    public ResponseEntity<List<ItemDto>> alugaItensEmMassa(@PathVariable Long id
+                                                              , @RequestBody byte[] arquivo){
+      List<ItemDto> retorno = this.transacaoService.alugaItensEmMassa(id, arquivo);
+        if(retorno != null) {
+            return ResponseEntity.ok(retorno);
+        }
+        return ResponseEntity.status(404).build();
 
 
-        return ResponseEntity.ok(this.transacaoService.alugarEmMassa(id, file));
     }
+
+
 
 
 

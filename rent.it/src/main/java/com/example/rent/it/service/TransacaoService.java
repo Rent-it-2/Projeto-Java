@@ -9,6 +9,7 @@ import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.dto.itemDto.ItemMapper;
 import com.example.rent.it.files.TransacaoLeituraTxt;
 import com.example.rent.it.files.TransacaoTxt;
+import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.transacao.Transacao;
 import com.example.rent.it.object.usuario.Usuario;
@@ -18,10 +19,14 @@ import com.example.rent.it.repository.ItemRepository;
 import com.example.rent.it.repository.TransacaoRepository;
 import com.example.rent.it.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +44,24 @@ public class TransacaoService {
     private ItemRepository itemRepository;
     private TransacaoTxt transacaoTxt = new TransacaoTxt();
     private TransacaoLeituraTxt letTxt =new TransacaoLeituraTxt();
+
+    public List<ItemDto> alugaItensEmMassa(Long id, byte[] arquivoByte) {
+        String arquivo = new String(arquivoByte);
+        Usuario u = this.usuarioRepository.findById(id).get();
+        List<Categoria> categorias =  this.categoriaRepository.findAll();
+
+        List<Item> retorno = ItemMapper.of(letTxt.leArquivoTxt(
+                transacaoTxt.criaArquivo(u.getNome() +
+                        LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), arquivoByte ), categorias,u ));
+
+        if(!retorno.isEmpty() &&
+           retorno != null){
+          return ItemMapper.of(this.itemRepository.saveAll(retorno));
+        }
+
+        return null;
+    }
+
 
     public File getAlugueis(Long id){
 
@@ -104,15 +127,5 @@ public class TransacaoService {
         return transacaoTxt.getListaDeAlugueis(transacoes);
     }
 
-    public List<ItemDto> alugarEmMassa(Long id, File file) {
-        Usuario u = this.usuarioRepository.findById(id).get();
-        FilaObj<Item> itens = letTxt.leArquivoTxt(file, this.categoriaRepository.findAll(), u);
-        FilaObj<Item> retorno = new FilaObj<>(itens.getTamanho());
-         for(int i = 0; i< itens.getTamanho();i++){
-             retorno.insert(itens.peek());
-             this.itemRepository.save(itens.poll());
-         }
 
-         return ItemMapper.of(retorno);
-    }
 }

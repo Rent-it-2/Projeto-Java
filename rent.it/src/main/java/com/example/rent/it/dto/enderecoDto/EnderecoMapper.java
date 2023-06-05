@@ -19,6 +19,18 @@ public class EnderecoMapper {
         return endereco;
     }
 
+    public static Endereco of(EnderecoPutDto enderecoCriacaoDto, Usuario u) {
+        Endereco endereco = new Endereco();
+
+
+        endereco.setCep(enderecoCriacaoDto.getCep());
+        endereco.setCidade(enderecoCriacaoDto.getCidade());
+        endereco.setComplemento(enderecoCriacaoDto.getComplemento());
+        endereco.setNumero(enderecoCriacaoDto.getNumero());
+        endereco.setUsuario(u);
+        return endereco;
+    }
+
     public static List<EnderecoDto> of(List<Endereco> enderecos){
         List<EnderecoDto> retorno = new ArrayList<>();
         for (Endereco e:
@@ -35,9 +47,9 @@ public class EnderecoMapper {
     }
 
     public static EnderecoDto of(Endereco e){
-        EnderecoDto retorno = new EnderecoDto();
 
             EnderecoDto dto = new EnderecoDto();
+
             dto.setId(e.getId());
             dto.setCep(e.getCep());
             dto.setCidade(e.getCidade());
@@ -47,6 +59,6 @@ public class EnderecoMapper {
             dto.setComplemento(e.getComplemento());
 
 
-        return retorno;
+        return dto;
     }
 }

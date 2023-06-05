@@ -2,6 +2,8 @@ package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.dto.enderecoDto.EnderecoCriacao;
 import com.example.rent.it.dto.enderecoDto.EnderecoDto;
+import com.example.rent.it.dto.enderecoDto.EnderecoMapper;
+import com.example.rent.it.dto.enderecoDto.EnderecoPutDto;
 import com.example.rent.it.object.endereco.Endereco;
 import com.example.rent.it.repository.EnderecoRepository;
 import com.example.rent.it.service.EnderecoService;
@@ -37,10 +39,10 @@ public class EnderecoController {
             @ApiResponse(responseCode = "200", description = "Endereço atualizado com sucesso"),
             @ApiResponse(responseCode = "404", description = "Não foi encontrado Endereço com o ID especificado")
     })
-    public Endereco updateEndereco(@PathVariable Long id, @RequestBody Endereco endereco) {
+    public EnderecoDto updateEndereco(@PathVariable Long id, @RequestBody EnderecoPutDto endereco) {
         if (this.enderecoRepository.existsById(id)) {
             endereco.setId(id);
-            return this.enderecoRepository.save(endereco);
+            return this.enderecoService.atualizar(endereco);
         }
         return null;
     }

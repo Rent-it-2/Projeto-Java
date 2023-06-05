@@ -4,11 +4,9 @@ import com.example.rent.it.armazenamento.PilhaObj;
 import com.example.rent.it.dto.TransacaoDto.TransacaoRetornoDto;
 import com.example.rent.it.object.transacao.Transacao;
 import com.example.rent.it.ordenacao.ListaObj;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -136,5 +134,28 @@ public class TransacaoTxt {
         catch (IOException erro) {
             System.out.println("Erro ao gravar no arquivo");
         }
+    }
+
+    public File criaArquivo(String nomeArqui, byte[] arqByte){
+        File retorno = null;
+
+        if (!this.diretorioBase.toFile().exists()) {
+            this.diretorioBase.toFile().mkdir();
+        }
+        nomeArqui += ".txt";
+
+        try (
+                FileOutputStream fileOutputStream =
+                     new FileOutputStream(this.diretorioBase + "/" + nomeArqui)){
+            fileOutputStream.write(arqByte);
+
+            retorno = new File(this.diretorioBase + "/" + nomeArqui);
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return retorno;
+
     }
 }

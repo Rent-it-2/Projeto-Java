@@ -40,7 +40,7 @@ public class cartaoController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
     })
 
-    public ResponseEntity<List<CartaoDto>> acharPorIdUsuario(@RequestParam Long id) {
+    public ResponseEntity<CartaoDto> acharPorIdUsuario(@RequestParam Long id) {
 
         return ResponseEntity.status(201).body( this.cartaoService.acharPorUsuario(id));
     }
@@ -53,7 +53,7 @@ public class cartaoController {
 
     public ResponseEntity<CartaoDto> acharPorId(@RequestParam Long id) {
 
-        return ResponseEntity.status(200).body( this.cartaoService.acharPorId(id));
+        return ResponseEntity.status(200).body(this.cartaoService.acharPorId(id));
     }
 
     @PatchMapping("/atuzalizar")

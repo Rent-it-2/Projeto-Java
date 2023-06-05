@@ -80,23 +80,32 @@ public class ItemMapper {
        return itensDto;
     }
 
-    public static List<ItemDto> of(FilaObj<Item> itens){
-        List<ItemDto> itensDto = new ArrayList<>();
-        Item item;
-
-        for (int i = 0; i < itens.getTamanho();i++ ) {
-            item = itens.poll();
-           ItemDto itemDto  = new ItemDto();
-
-            itemDto.setId(item.getId());
-            itemDto.setNome(item.getNome());
-            itemDto.setCategoria(item.getCategoria().getNomeCategoria());
-            itemDto.setDescricao(item.getDescricao());
-            itemDto.setValorDia(item.getValorDia());
-            itensDto.add(itemDto);
-
+//    public static List<ItemDto> of(FilaObj<Item> itens){
+//        List<ItemDto> itensDto = new ArrayList<>();
+//        Item item;
+//
+//        for (int i = 0; i < itens.getTamanho();i++ ) {
+//            item = itens.poll();
+//           ItemDto itemDto  = new ItemDto();
+//
+//            itemDto.setId(item.getId());
+//            itemDto.setNome(item.getNome());
+//            itemDto.setCategoria(item.getCategoria().getNomeCategoria());
+//            itemDto.setDescricao(item.getDescricao());
+//            itemDto.setValorDia(item.getValorDia());
+//            itensDto.add(itemDto);
+//
+//        }
+//        return itensDto;
+//    }
+    public static List<Item> of(FilaObj<Item> itens){
+        List<Item> retorno = new ArrayList<>();
+        if(itens !=  null) {
+            while (!itens.isEmpty()) {
+                retorno.add(itens.poll());
+            }
         }
-        return itensDto;
+        return retorno;
     }
 
     }

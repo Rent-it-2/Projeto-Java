@@ -3,6 +3,7 @@ package com.example.rent.it.service;
 import com.example.rent.it.dto.enderecoDto.EnderecoCriacao;
 import com.example.rent.it.dto.enderecoDto.EnderecoDto;
 import com.example.rent.it.dto.enderecoDto.EnderecoMapper;
+import com.example.rent.it.dto.enderecoDto.EnderecoPutDto;
 import com.example.rent.it.object.endereco.Endereco;
 import com.example.rent.it.repository.EnderecoRepository;
 import com.example.rent.it.repository.UsuarioRepository;
@@ -36,5 +37,11 @@ public class EnderecoService {
         return EnderecoMapper.of(this.enderecoRepository.findByUsuario(
                 this.usuarioRepository.findById(id).get()
         ));
+    }
+
+    public EnderecoDto atualizar(EnderecoPutDto endereco) {
+        return EnderecoMapper.of(this.enderecoRepository.save(EnderecoMapper.of(endereco,
+                this.usuarioRepository.findById(endereco.getUsuario()).get())));
+
     }
 }
