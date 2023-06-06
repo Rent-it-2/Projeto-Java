@@ -141,7 +141,7 @@ public class TransacaoService {
     }
 
     public boolean isCartaoValido(String numCartao){
-        if(numCartao.length() == 12){
+        if(numCartao.length() > 9){
             return true;
         }
         return false;
