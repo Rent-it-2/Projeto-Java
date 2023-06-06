@@ -40,7 +40,7 @@ public class cartaoController {
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o Cartão"),
     })
 
-    public ResponseEntity<CartaoDto> acharPorIdUsuario(@RequestParam Long id) {
+    public ResponseEntity<List<CartaoDto>> acharPorIdUsuario(@RequestParam Long id) {
 
         return ResponseEntity.status(201).body( this.cartaoService.acharPorUsuario(id));
     }

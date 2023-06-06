@@ -27,7 +27,7 @@ public class FavoritosMapper {
             itemDto  = new ItemDto();
             itemDto.setId(favoritos.get(i).getFkItem().getId());
             itemDto.setNome(favoritos.get(i).getFkItem().getNome());
-            itemDto.setCategoria(favoritos.get(i).getFkItem().getCategoria().getNomeCategoria());
+            itemDto.setCategoria(favoritos.get(i).getFkItem().getCategoria().getId());
             itemDto.setValorDia(favoritos.get(i).getFkItem().getValorDia());
             itensDto.add(itemDto);
 

@@ -8,5 +8,5 @@ import java.util.List;
 
 
 public interface CartaoRepository extends JpaRepository<Cartao, Long> {
-    Cartao findByUsuarioId(Long id);
+    List<Cartao> findByUsuarioId(Long id);
 }

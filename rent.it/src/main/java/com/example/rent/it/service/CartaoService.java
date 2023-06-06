@@ -37,7 +37,7 @@ public class CartaoService {
          return null;
     }
 
-    public CartaoDto acharPorUsuario(Long id) {
+    public List<CartaoDto> acharPorUsuario(Long id) {
         return CartaoMapper.of(this.cartaoRepository.findByUsuarioId(id));
     }
     public CartaoDto acharPorId(Long id) {
