@@ -25,7 +25,7 @@ public class CartaoMapper {
             cartaoDto.setNumCartao(cartao.get(i).getNumCartao());
             cartaoDto.setValidade(cartao.get(i).getValidade());
             cartaoDto.setNomeUsuario(cartao.get(i).getNomeImpresso());
-
+            cartaoDto.setCpf(cartao.get(i).getCpfTitular());
             cartaoDtos.add(cartaoDto);
 
         }
