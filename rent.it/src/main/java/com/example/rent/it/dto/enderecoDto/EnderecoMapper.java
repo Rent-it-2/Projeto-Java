@@ -28,6 +28,8 @@ public class EnderecoMapper {
         endereco.setCep(enderecoCriacaoDto.getCep());
         endereco.setCidade(enderecoCriacaoDto.getCidade());
         endereco.setComplemento(enderecoCriacaoDto.getComplemento());
+        endereco.setLogradouro(enderecoCriacaoDto.getLogradouro());
+        endereco.setBairro(enderecoCriacaoDto.getBairro());
         endereco.setNumero(enderecoCriacaoDto.getNumero());
         endereco.setUsuario(u);
         return endereco;
