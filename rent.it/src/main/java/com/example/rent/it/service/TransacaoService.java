@@ -5,19 +5,18 @@ import com.example.rent.it.armazenamento.ListaAluguel;
 import com.example.rent.it.armazenamento.PilhaObj;
 import com.example.rent.it.dto.TransacaoDto.TransacaoMapper;
 import com.example.rent.it.dto.TransacaoDto.TransacaoRetornoDto;
+import com.example.rent.it.dto.TransacaoDto.TrasacaoAlugar;
 import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.dto.itemDto.ItemMapper;
 import com.example.rent.it.files.TransacaoLeituraTxt;
 import com.example.rent.it.files.TransacaoTxt;
+import com.example.rent.it.object.cartao.Cartao;
 import com.example.rent.it.object.categoria.Categoria;
 import com.example.rent.it.object.item.Item;
 import com.example.rent.it.object.transacao.Transacao;
 import com.example.rent.it.object.usuario.Usuario;
 import com.example.rent.it.ordenacao.ListaObj;
-import com.example.rent.it.repository.CategoriaRepository;
-import com.example.rent.it.repository.ItemRepository;
-import com.example.rent.it.repository.TransacaoRepository;
-import com.example.rent.it.repository.UsuarioRepository;
+import com.example.rent.it.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -39,6 +38,8 @@ public class TransacaoService {
     private  UsuarioRepository usuarioRepository;
     @Autowired
     private CategoriaRepository categoriaRepository;
+    @Autowired
+    private CartaoRepository cartaoRepository;
 
     @Autowired
     private ItemRepository itemRepository;
@@ -128,4 +129,21 @@ public class TransacaoService {
     }
 
 
+    public Transacao alugarItem(TrasacaoAlugar aluguel) {
+        Cartao c = this.cartaoRepository.findById(aluguel.getCartaoId()).get();
+        if(isCartaoValido(c.getNumCartao())){
+             Transacao t = TransacaoMapper.of(this.itemRepository.findById(aluguel.getItemId()).get()
+             , this.usuarioRepository.findById(aluguel.getIdUso()).get(),aluguel);
+            return this.transacaoRepository.save(t);
+        }
+        return null;
+
+    }
+
+    public boolean isCartaoValido(String numCartao){
+        if(numCartao.length() == 12){
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.rent.it.api.controllers;
 
+import com.example.rent.it.dto.TransacaoDto.TrasacaoAlugar;
 import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.object.transacao.Transacao;
 import com.example.rent.it.service.TransacaoService;
@@ -128,6 +129,17 @@ public class TransacaoController {
         }
         return ResponseEntity.status(404).build();
 
+
+    }
+
+    @PostMapping(value = "/alugar-item/{id}")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Itens Criados com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
+    })
+
+    public ResponseEntity<Transacao> alugarItem(@RequestBody TrasacaoAlugar aluguel){
+            return ResponseEntity.ok(this.transacaoService.alugarItem(aluguel));
 
     }
 
