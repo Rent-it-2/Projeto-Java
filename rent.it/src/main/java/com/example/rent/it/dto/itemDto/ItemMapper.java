@@ -41,7 +41,7 @@ public class ItemMapper {
         retorno.setDescricao(item.getDescricao());
         retorno.setValorDia(item.getValorDia());
         retorno.setDisponivel(item.getDisponivel());
-        retorno.setCategoria(item.getCategoria().getNomeCategoria());
+        retorno.setCategoria(item.getCategoria().getId());
         retorno.setIdUsuario(item.getUsuario().getId());
         retorno.setNomeUsuario(item.getUsuario().getNome());
         retorno.setApelidoUsario(item.getUsuario().getApelido());

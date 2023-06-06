@@ -7,7 +7,7 @@ public class ItemRetornoDto {
 
     private String nomeItem;
 
-    private String categoria;
+    private Integer categoria;
 
     private Integer disponivel;
 
@@ -36,11 +36,11 @@ public class ItemRetornoDto {
         this.nomeItem = nomeItem;
     }
 
-    public String getCategoria() {
+    public Integer getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Integer categoria) {
         this.categoria = categoria;
     }
 

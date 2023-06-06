@@ -6,6 +6,7 @@ public class UsuarioToken {
         private String nome;
         private String apelido;
         private String email;
+        private String telefone;
         private String token;
 
     public String getApelido() {
@@ -40,7 +41,19 @@ public class UsuarioToken {
             this.email = email;
         }
 
-        public String getToken() {
+    public Long getId() {
+        return id;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getToken() {
             return token;
         }
 
