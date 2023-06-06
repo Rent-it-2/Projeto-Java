@@ -31,7 +31,7 @@ public class ListaAluguel {
 
         try {
 
-            nomeArq = transacoes.getElemento(1).getFkUsuario().getNome();
+            nomeArq = transacoes.getElemento(0).getFkUsuario().getNome();
             boolean ok = true;
             nomeArq += ".csv";
             String id = "Id", nome = "Nome", dtInicio = "DataInicio", dtFim = "DataFim", valor = "ValorDia", valorTotal = "ValorTotal";
