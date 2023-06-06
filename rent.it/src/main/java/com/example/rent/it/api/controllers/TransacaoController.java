@@ -132,7 +132,7 @@ public class TransacaoController {
 
     }
 
-    @PostMapping(value = "/alugar-item/{id}")
+    @PostMapping(value = "/alugar-item")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Itens Criados com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
