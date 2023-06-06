@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.print.attribute.standard.Media;
 import java.io.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -113,7 +114,7 @@ public class TransacaoController {
     //importação de itens para alugar(fila)
 
 
-    @PostMapping(value = "/alugar/{id}",   consumes = {MediaType.TEXT_PLAIN_VALUE})
+    @PostMapping(value = "/alugar/{id}",   consumes = "image/jpg" )
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Itens Criados com sucesso"),
             @ApiResponse(responseCode = "404", description = "Usuario não encontrado")
