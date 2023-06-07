@@ -25,7 +25,8 @@ public class Usuario {
     @Column(unique = true, name = "telefone")
     private String telefone;
     @JsonIgnore
-    @Column(name = "ftPerfil")
+    @Column(name = "ftPerfil", length = 50 * 1024 * 1024)
+
     private byte[] foto;
 
 

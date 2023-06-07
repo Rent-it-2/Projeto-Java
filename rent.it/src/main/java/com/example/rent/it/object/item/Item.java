@@ -19,7 +19,7 @@ public class Item {
     @Column(name = "nomeItem")
     private String nome;
     @JsonIgnore
-    @Column(name = "foto")
+    @Column(name = "foto", length = 50 * 1024 * 1024)
     private byte[] foto;
     @Column(name = "descItem")
     private String descricao;
