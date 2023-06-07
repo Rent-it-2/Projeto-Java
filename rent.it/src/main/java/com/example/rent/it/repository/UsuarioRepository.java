@@ -13,7 +13,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     boolean existsById(Long id);
     Optional<Usuario> findByEmail(String email);
     Optional<Usuario> findById(Long id);
-
+    @Modifying
+    @Transactional
     @Query("SELECT u.foto FROM Usuario u WHERE u.id = ?1")
     byte[] findFotoById(Long id);
 
