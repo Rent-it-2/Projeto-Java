@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface AvaliacaoRepository extends JpaRepository <Avaliacao, Long>{
-     List<Avaliacao> findByTransacaoFkItem(Item Item);
+     List<Avaliacao> findAllByTransacaoFkItem(Item Item);
 }

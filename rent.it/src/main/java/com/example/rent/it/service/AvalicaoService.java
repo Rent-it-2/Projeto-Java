@@ -37,7 +37,7 @@ public class AvalicaoService {
     }
 
     public AvaliacaoNotaRetornoDto getAvaliacao(Long id) {
-        List<Avaliacao> avaliacoes = this.avaliacaoRepository.findByTransacaoFkItem(
+        List<Avaliacao> avaliacoes = this.avaliacaoRepository.findAllByTransacaoFkItem(
                 this.itemRepository.findById(id).get()
         );
 
