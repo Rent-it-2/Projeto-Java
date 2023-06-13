@@ -15,10 +15,9 @@ public class Avaliacao {
     private String comentario;
     @Column(name = "nota")
     private Double nota;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fkTransacao", unique = false)
     private Transacao transacao;
-
     public Integer getId() {
         return id;
     }

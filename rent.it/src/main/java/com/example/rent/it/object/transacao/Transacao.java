@@ -13,11 +13,11 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idTransacao")
     private Long idTransacao;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fkItem", unique = false)
     private Item fkItem;
     @ManyToOne
-    @JoinColumn(name = "fkUsuario", unique =  false)
+    @JoinColumn(name = "fkUsuario", unique = false)
     private Usuario fkUsuario;
     @Column(name = "dtInicio")
     private Date dtInicio;
