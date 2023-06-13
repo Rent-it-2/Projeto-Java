@@ -32,7 +32,7 @@ public class UsuarioService {
     private AuthenticationManager authenticationManager;
 
     public void criar(UsuarioCriacao usuarioCriacaoDto) {
-        final Usuario novoUsuario = UsuarioMapper.of(usuarioCriacaoDto);
+        Usuario novoUsuario = UsuarioMapper.of(usuarioCriacaoDto);
 
         String senhaCriptografada = passwordEncoder.encode(novoUsuario.getPassword());
         novoUsuario.setPassword(senhaCriptografada);

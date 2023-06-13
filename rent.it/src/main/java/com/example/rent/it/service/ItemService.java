@@ -42,7 +42,7 @@ public class ItemService {
                 )){final Item novoItem = ItemMapper.of(itemDto,
                 this.categoriaRepository.findById(itemDto.getCategoria()).get(),
                 this.usuarioRepository.findById(itemDto.getUsuario()).get());
-            this.itemRepository.save(novoItem);
+
                     return this.itemRepository.save(novoItem);
         }
         return null;
