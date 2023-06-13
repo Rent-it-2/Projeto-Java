@@ -7,7 +7,6 @@ public class TrasacaoAlugar {
     private String cpf;
     private Date dtFim;
     private Date dtInicio;
-    private Long enderecoId;
     private Long itemId;
     private Long idUso;
     private double valorFinal;
@@ -52,13 +51,7 @@ public class TrasacaoAlugar {
         this.dtInicio = dtInicio;
     }
 
-    public Long getEnderecoId() {
-        return enderecoId;
-    }
 
-    public void setEnderecoId(Long enderecoId) {
-        this.enderecoId = enderecoId;
-    }
 
     public Long getItemId() {
         return itemId;
