@@ -145,8 +145,12 @@ public class TransacaoController {
     })
 
     public ResponseEntity<Transacao> alugarItem(@RequestBody TrasacaoAlugar aluguel){
-            return ResponseEntity.ok(this.transacaoService.alugarItem(aluguel));
-
+      Transacao t = new Transacao();
+      t = this.transacaoService.alugarItem(aluguel);
+      if(t != null) {
+          return ResponseEntity.ok(t);
+      }
+      return ResponseEntity.status(401).build();
     }
 
     @PostMapping(value = "/avaliar")
