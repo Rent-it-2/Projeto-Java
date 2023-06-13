@@ -16,7 +16,7 @@ public class Avaliacao {
     @Column(name = "nota")
     private Double nota;
     @OneToOne
-    @JoinColumn(name = "fkTransacao")
+    @JoinColumn(name = "fkTransacao", unique = false)
     private Transacao transacao;
 
     public Integer getId() {
