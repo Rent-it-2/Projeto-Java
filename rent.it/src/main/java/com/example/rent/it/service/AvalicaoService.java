@@ -45,9 +45,11 @@ public class AvalicaoService {
 
         for(Avaliacao a:
             avaliacoes){
-            notaBruta = a.getNota();
+            notaBruta += a.getNota();
         }
         Double nota = notaBruta / avaliacoes.size();
+
+        
 
 
         return AvaliacaoMapper.of(nota);
