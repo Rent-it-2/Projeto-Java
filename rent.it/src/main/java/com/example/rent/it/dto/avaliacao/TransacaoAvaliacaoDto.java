@@ -3,15 +3,15 @@ package com.example.rent.it.dto.avaliacao;
 import com.example.rent.it.object.transacao.Transacao;
 
 public class TransacaoAvaliacaoDto {
-    private Long transacao;
+    private Long idItem;
     private Double nota;
 
     public Long getTransacao() {
-        return transacao;
+        return idItem;
     }
 
-    public void setTransacao(Long transacao) {
-        this.transacao = transacao;
+    public void setTransacao(Long idItem) {
+        this.idItem = idItem;
     }
 
     public Double getNota() {
