@@ -76,9 +76,13 @@ public class itemController {
             @ApiResponse(responseCode ="201", description = "Item cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Não foi possível cadastrar o item")
     })
-    public ResponseEntity<Void> cadastrar(@RequestBody ItemCriacaoDto itemCriacaoDto) {
-        this.itemService.criar(itemCriacaoDto);
-        return ResponseEntity.status(201).build();
+    public ResponseEntity<Item> cadastrar(@RequestBody ItemCriacaoDto itemCriacaoDto) {
+       Item i = this.itemService.criar(itemCriacaoDto);
+       if(i != null){
+
+           return ResponseEntity.status(201).body(i);
+       }
+     return ResponseEntity.status(401).build();
     }
     @GetMapping("/nome/{nome}")
     @ApiResponses(value = {

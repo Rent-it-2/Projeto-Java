@@ -1,8 +1,12 @@
 package com.example.rent.it.api.controllers;
 
 import com.example.rent.it.dto.TransacaoDto.TrasacaoAlugar;
+import com.example.rent.it.dto.avaliacao.AvaliacaoNotaDto;
+import com.example.rent.it.dto.avaliacao.AvaliacaoNotaRetornoDto;
+import com.example.rent.it.dto.avaliacao.TransacaoAvaliacaoDto;
 import com.example.rent.it.dto.itemDto.ItemDto;
 import com.example.rent.it.object.transacao.Transacao;
+import com.example.rent.it.service.AvalicaoService;
 import com.example.rent.it.service.TransacaoService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -25,6 +29,8 @@ public class TransacaoController {
     @Autowired
     private TransacaoService transacaoService;
 
+    @Autowired
+    private AvalicaoService avaliacaoService;
 
 
   @GetMapping("/csv/{id}")
@@ -141,6 +147,28 @@ public class TransacaoController {
     public ResponseEntity<Transacao> alugarItem(@RequestBody TrasacaoAlugar aluguel){
             return ResponseEntity.ok(this.transacaoService.alugarItem(aluguel));
 
+    }
+
+    @PostMapping(value = "/avaliar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Avaliação feita com sucesso"),
+            @ApiResponse(responseCode = "404", description = "Houve um erro na avaliação")
+    })
+    public ResponseEntity<Transacao> avliar(@RequestBody TransacaoAvaliacaoDto avaliacao){
+      Transacao t = this.avaliacaoService.avaliar(avaliacao);
+      if(t != null) {
+          return ResponseEntity.ok(t);
+      }
+      return  ResponseEntity.status(404).build();
+    }
+
+    @GetMapping(value = "/get-avaliar")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Avaliação achada"),
+            @ApiResponse(responseCode = "404", description = "Houve um erro ao achar avaliação")
+    })
+    public ResponseEntity<AvaliacaoNotaRetornoDto> getAvaliacao(Long id){
+      return ResponseEntity.ok(this.avaliacaoService.getAvaliacao(id));
     }
 
 

@@ -14,7 +14,7 @@ public class Avaliacao {
     @Column(name = "comentario")
     private String comentario;
     @Column(name = "nota")
-    private int nota;
+    private Double nota;
     @OneToOne
     @JoinColumn(name = "fkTransacao")
     private Transacao transacao;
@@ -35,11 +35,11 @@ public class Avaliacao {
         this.comentario = comentario;
     }
 
-    public int getNota() {
+    public Double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(Double nota) {
         this.nota = nota;
     }
 
