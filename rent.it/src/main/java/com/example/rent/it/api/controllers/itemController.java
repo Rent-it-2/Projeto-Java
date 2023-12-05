@@ -98,27 +98,25 @@ public class itemController {
         }
     }
 
-    @GetMapping(value = "/foto/{id}", produces = MediaType.IMAGE_JPEG_VALUE)
+    @GetMapping(value = "/foto/{id}")
     @ApiResponses(value = {
             @ApiResponse(responseCode ="200", description = "Itens encontrados"),
             @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
     })
-    public ResponseEntity<byte[]> getFotoItem(@PathVariable Long id){
+    public ResponseEntity<String> getFotoItem(@PathVariable Long id){
 
-        return ResponseEntity.status(200).header("content-disposition",
-                " filename=\"item.jpg\"")
-                   .body(this.itemService.buscarFoto(id));
+        return ResponseEntity.status(200).body(this.itemService.buscarFoto(id));
 
     }
 
     @CrossOrigin("*")
-    @PatchMapping(value = "/foto/{id}", consumes = "image/jpg")
+    @PatchMapping(value = "/foto/{id}")
    @ApiResponses(value = {
             @ApiResponse(responseCode ="200", description = "Foto do Item Atualizada"),
             @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
     })
     public ResponseEntity<ResponseEntity> atualizaFotoItem(@PathVariable Long id,
-                                                           @RequestBody byte[] foto){
+                                                           @RequestBody String foto){
        boolean resposta = this.itemService.atualizaFoto(id, foto);
 
      if(!resposta){

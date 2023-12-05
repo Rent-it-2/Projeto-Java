@@ -17,6 +17,8 @@
 	    <spring-cloud.version>2022.0.3</spring-cloud.version>
 		<java.version>17</java.version>
 		<spring-cloud.version>2022.0.3</spring-cloud.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
 	</properties>
 	<dependencies>
 		<dependency>
@@ -30,9 +32,12 @@
 <!--		</dependency>-->
 
 
+
+
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.33</version>
 			<scope>runtime</scope>
 		</dependency>
 
