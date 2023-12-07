@@ -61,7 +61,7 @@ public class UsuarioService {
     }
 
 
-    public String buscarFoto(Long id) {
+    public byte[] buscarFoto(Long id) {
 
         if(!this.usuarioRepository.existsFotoById(id)){
             return this.usuarioRepository.findFotoById(id - id);
@@ -70,7 +70,7 @@ public class UsuarioService {
         return this.usuarioRepository.findFotoById(id);
     }
 
-    public boolean atualizaFoto(Long id, String foto) {
+    public boolean atualizaFoto(Long id, byte [] foto) {
 
         if(this.usuarioRepository.existsById(id)){
 

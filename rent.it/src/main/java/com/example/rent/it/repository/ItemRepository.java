@@ -25,13 +25,13 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Optional<List<Item>> findByNomeContainingIgnoreCase(String nome);
     @Query("SELECT i.foto FROM Item i WHERE i.id = ?1")
-    String findFotoById(Long id);
+    byte[] findFotoById(Long id);
 
     boolean existsFotoById(Long id);
     @Modifying
     @Transactional
     @Query("UPDATE Item i SET i.foto = ?2 WHERE i.id = ?1")
-    void atualizaFoto(Long id, String foto);
+    void atualizaFoto(Long id, byte[] foto);
 
     List<Item> findByUsuarioId(Long id);
 

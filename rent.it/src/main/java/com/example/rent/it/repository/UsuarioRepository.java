@@ -15,12 +15,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     Optional<Usuario> findById(Long id);
 
     @Query("SELECT u.foto FROM Usuario u WHERE u.id = ?1")
-    String findFotoById(Long id);
+    byte[] findFotoById(Long id);
 
     boolean existsFotoById(Long id);
     @Modifying
     @Transactional
     @Query("UPDATE Usuario u SET u.foto = ?2 WHERE u.id = ?1")
-    void atualizaFoto(Long id,String foto);
+    void atualizaFoto(Long id,byte[] foto);
 
 }

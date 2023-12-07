@@ -26,7 +26,6 @@ public class Usuario {
     private String telefone;
     @JsonIgnore
     @Column(name = "ftPerfil", length = 50 * 1024 * 1024)
-
     private byte[] foto;
 
 

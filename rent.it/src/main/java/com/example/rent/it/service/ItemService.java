@@ -53,7 +53,7 @@ public class ItemService {
         return this.itemRepository.findAll();
     }
 
-    public String buscarFoto(Long id) {
+    public byte[] buscarFoto(Long id) {
 
         if(!this.itemRepository.existsFotoById(id)){
             return this.itemRepository.findFotoById(id - id);
@@ -62,7 +62,7 @@ public class ItemService {
         return this.itemRepository.findFotoById(id);
     }
 
-    public boolean atualizaFoto(Long id, String foto) {
+    public boolean atualizaFoto(Long id, byte[] foto) {
 
         if(this.itemRepository.existsById(id)){
 
