@@ -117,8 +117,9 @@ public class UsuarioController {
 
     }
 
+
     @CrossOrigin("*")
-    @PatchMapping(value = "/foto/{id}", consumes = "image/*")
+    @PatchMapping(value = "/foto/{id}", consumes = "image/jpg")
     @ApiResponses(value = {
             @ApiResponse(responseCode ="200", description = "Foto do Item Atualizada"),
             @ApiResponse(responseCode = "404", description = "Nenhum item encontrado")
