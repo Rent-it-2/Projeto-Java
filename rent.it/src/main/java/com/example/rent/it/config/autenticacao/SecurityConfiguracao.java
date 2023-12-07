@@ -1,7 +1,13 @@
 package com.example.rent.it.config.autenticacao;
 
 import com.example.rent.it.Token.GerenciadorTokenJwt;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -17,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.cors.CorsConfiguration;
 
 
@@ -55,14 +62,66 @@ public class SecurityConfiguracao {
             new AntPathRequestMatcher("/**"),
     };
 
+//    @Bean
+//    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        return http
+//                .requiresChannel(channel ->
+//                        channel.anyRequest().requiresSecure())
+//                .authorizeRequests(authorize ->
+//                        authorize.anyRequest().permitAll())
+//                .build();
+//    }
+
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http
-                .requiresChannel(channel ->
-                        channel.anyRequest().requiresSecure())
-                .authorizeRequests(authorize ->
-                        authorize.anyRequest().permitAll())
-                .build();
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.headers()
+                .frameOptions().disable()
+                .and()
+                .cors()
+                .configurationSource(request -> buildCorsConfiguration())
+                .and()
+                .csrf()
+                .disable()
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers(URLS_PERMITIDAS)
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated()
+                )
+                .exceptionHandling()
+                .authenticationEntryPoint(autenticacaoJwtEntryPoint)
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(jwtAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
+    }
+
+    @Bean
+    public ServletWebServerFactory servletContainer() {
+        TomcatServletWebServerFactory tomcat = new TomcatServletWebServerFactory() {
+
+            protected void postProcessContext(Context context) {
+                var securityConstraint = new SecurityConstraint();
+                securityConstraint.setUserConstraint("CONFIDENTIAL");
+                var collection = new SecurityCollection();
+                collection.addPattern("/*");
+                securityConstraint.addCollection(collection);
+                context.addConstraint(securityConstraint);
+            }
+        };
+        tomcat.addAdditionalTomcatConnectors(getHttpConnector());
+        return tomcat;
+    }
+
+    private Connector getHttpConnector() {
+        var connector = new Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL);
+        connector.setScheme("http");
+        connector.setPort(8080);
+        connector.setSecure(false);
+        connector.setRedirectPort(8443);
+        return connector;
     }
 
     @Bean
